@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Comendie-Frontend"
+    }
+  },
+  "defaultProject": "Comendie-Frontend",
+  "cli": {
+    "analytics": false
+  }
 }
