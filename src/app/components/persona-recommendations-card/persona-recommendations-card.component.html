@@ -1,0 +1,16 @@
+<div class="card" style="width: 18rem;" >
+        <img 
+            class="card-img-top person-card-image" 
+            src="{{discoverPersonaModel.persona.getProfileImagePath()}}" 
+            alt="Image of {{discoverPersonaModel.persona.name}}"
+        >
+        <div class="card-body">
+            <h5 class="card-title">{{discoverPersonaModel.persona.name}}</h5>
+            <app-interest-short-entry 
+                class="card-text" 
+                *ngFor="let interest of discoverPersonaModel.shortInterestsList"
+                [interest]="interest"
+            >
+            </app-interest-short-entry>
+        </div>
+    </div>

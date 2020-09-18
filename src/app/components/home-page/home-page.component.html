@@ -1,1 +1,9 @@
-<p>home-page works!</p>
+<div class="card-deck d-flex justify-content-center">
+    <app-persona-recommendations-card 
+        *ngFor="let persona of personas" 
+        [discoverPersonaModel]="persona"
+        class="d-flex mb-5"
+        
+    > 
+    </app-persona-recommendations-card>
+</div>
