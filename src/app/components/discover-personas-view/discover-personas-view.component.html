@@ -1,4 +1,4 @@
-<div class="card-deck d-flex justify-content-center">
+<div *ngIf="personas" class="card-deck d-flex justify-content-center">
     <app-persona-recommendations-card 
         *ngFor="let persona of personas" 
         [discoverPersonaModel]="persona"
