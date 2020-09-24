@@ -11,7 +11,7 @@ import { Recommendation } from 'src/app/models/Recommendation';
 export class RecommendationPageComponent implements OnInit {
 
   private id: number
-  private recommendation: Recommendation
+  public recommendation: Recommendation
 
   constructor(
     private recommendations: RecommendationsService,

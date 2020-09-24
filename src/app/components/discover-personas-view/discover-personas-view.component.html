@@ -1,4 +1,4 @@
-<div *ngIf="personas.length > 0; else loading" class="card-deck d-flex justify-content-center">
+<div *ngIf="personas.length" class="card-deck d-flex justify-content-center">
     <app-persona-recommendations-card 
         *ngFor="let persona of personas" 
         [discoverPersonaModel]="persona"
@@ -7,8 +7,5 @@
     </app-persona-recommendations-card>
 </div>
 
-<ng-template #loading>
-    <div class="lead d-flex justify-content-center">
-        <h1> Loading... </h1>
-    </div>
-</ng-template>
+<app-loading-indicator *ngIf="!personas.length">
+</app-loading-indicator>

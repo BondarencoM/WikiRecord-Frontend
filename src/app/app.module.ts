@@ -12,6 +12,7 @@ import { DiscoverPersonasViewComponent } from './components/discover-personas-vi
 import { StandardHeaderComponent } from './components/standard-header/standard-header.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { RecommendationPageComponent } from './pages/recommendation-page/recommendation-page.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { RecommendationPageComponent } from './pages/recommendation-page/recomme
     StandardHeaderComponent,
     LogInPageComponent,
     RecommendationPageComponent,
+    LoadingIndicatorComponent,
   ],
   imports: [
     BrowserModule,

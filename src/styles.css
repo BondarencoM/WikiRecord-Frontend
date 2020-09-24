@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 .cursor-pointer{
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
+
+.persona-profile-img{
+  width: 25vw;
+  height: 25vw;
+  min-width: 6rem;
+  min-height: 6rem;
+  max-width: 15rem;
+  max-height: 15rem;
+  object-fit: cover;
+  border: 3px solid black;
+  border-radius: 1rem;
+}
