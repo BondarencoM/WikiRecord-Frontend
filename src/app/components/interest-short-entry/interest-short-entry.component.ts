@@ -11,5 +11,5 @@ export class InterestShortEntryComponent {
   @Input() interest: Interest
 
   constructor() { }
-  
+
 }

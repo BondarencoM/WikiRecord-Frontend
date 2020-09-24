@@ -7,10 +7,11 @@
         <div class="card-body">
             <h5 class="card-title">{{discoverPersonaModel.persona.name}}</h5>
             <app-interest-short-entry 
-                class="card-text" 
-                *ngFor="let interest of discoverPersonaModel.shortInterestsList"
-                [interest]="interest"
-            >
+            class="card-text cursor-pointer" 
+            [interest]="recommendation.interest"
+            *ngFor="let recommendation of discoverPersonaModel.shortRecommendationsList"
+            routerLink="recommendations/{{recommendation.id}}"
+            > 
             </app-interest-short-entry>
-        </div>
+</div>
     </div>

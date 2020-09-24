@@ -4,7 +4,7 @@ export class Interest{
     type: InterestType
 
     static AttachMethods(input: Interest): Interest {
-        let result = Object.assign(new Interest(), input)
+        const result = Object.assign(new Interest(), input)
         return result;
     }
 
@@ -14,7 +14,7 @@ export class Interest{
 }
 
 export enum InterestType{
-    Book = 'Book', 
+    Book = 'Book',
     Movie = 'Movie',
-    Game = 'Game', 
+    Game = 'Game',
 }

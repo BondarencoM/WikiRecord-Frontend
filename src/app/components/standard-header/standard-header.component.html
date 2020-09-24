@@ -1,14 +1,18 @@
 <div class="row my-3 mx-4" >
-    <div class="col-sm-2"><h4>Comendie</h4></div>
+    <!-- Logo -->
+    <div class="col-sm-2 cursor-pointer" aria-selected="false"> 
+        <h4 routerLink="/"> Comendie </h4>
+    </div>
+
+    <!-- Search bar -->
     <div class="col-sm-8  d-flex justify-content-center">
-        <input type="text" class="w-50" placeholder="Search" value="" />
+        <input type="text" class="w-75" placeholder="Search" value="" />
     </div>
 
+    <!-- navigations -->
     <div class="login-navigations" class="col-sm-2">
-        <a router-link="/log-in"> Log in </a> 
-        /
-        <a router-link="sign-up"> Sign up </a> 
+        <a routerLink="/log-in"> Log in / </a> 
+        <a routerLink="sign-up"> Sign up </a> 
     </div>
-
 
 </div>

@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  personasServiceURL: 'https://localhost:5001/api/personas'
+  personasServiceURL: 'https://localhost:5001/api/personas',
+  recommendationServiceURL: 'https://localhost:5001/api/recommendations',
+
 };
 
 /*

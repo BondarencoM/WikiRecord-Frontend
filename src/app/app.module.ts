@@ -11,6 +11,7 @@ import { InterestShortEntryComponent } from './components/interest-short-entry/i
 import { DiscoverPersonasViewComponent } from './components/discover-personas-view/discover-personas-view.component';
 import { StandardHeaderComponent } from './components/standard-header/standard-header.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
+import { RecommendationPageComponent } from './pages/recommendation-page/recommendation-page.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
     DiscoverPersonasViewComponent,
     StandardHeaderComponent,
     LogInPageComponent,
+    RecommendationPageComponent,
   ],
   imports: [
     BrowserModule,
