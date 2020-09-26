@@ -13,6 +13,8 @@ import { StandardHeaderComponent } from './components/standard-header/standard-h
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { RecommendationPageComponent } from './pages/recommendation-page/recommendation-page.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
+import { AuthCallbackPageComponent } from './pages/auth-callback-page/auth-callback-page.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
     LogInPageComponent,
     RecommendationPageComponent,
     LoadingIndicatorComponent,
+    AuthCallbackPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
     NgbModule,
 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,7 +21,7 @@ export class RecommendationPageComponent implements OnInit {
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'))
     this.recommendations.getById(this.id).subscribe({
-      next: result => { this.recommendation = result; console.log(result)}
+      next: result =>  this.recommendation = Recommendation.AttachMethods(result)
     })
   }
 

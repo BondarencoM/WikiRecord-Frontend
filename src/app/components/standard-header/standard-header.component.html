@@ -6,13 +6,20 @@
 
     <!-- Search bar -->
     <div class="col-sm-8  d-flex justify-content-center">
-        <input type="text" class="w-75" placeholder="Search" value="" />
+        <input type="text" class="w-100" placeholder="Search" value="" />
     </div>
 
     <!-- navigations -->
-    <div class="login-navigations" class="col-sm-2">
-        <a routerLink="/log-in"> Log in / </a> 
-        <a routerLink="sign-up"> Sign up </a> 
+    <div *ngIf="user?.isLoggedIn(); else navigations"  class="col-sm-2 justify-content-right">
+        <div class="text-right">
+            {{user.claims.preferred_username}}
+        </div>
     </div>
 
+    <ng-template #navigations>
+        <div  class="login-navigations" class="col-sm-1">
+            <a routerLink="/log-in"> Log in / </a> 
+            <a routerLink="sign-up"> Sign up </a> 
+        </div>
+    </ng-template>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-log-in-page',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogInPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
+
 
   ngOnInit(): void {
+
+  }
+
+  onClick(){
+    this.authService.startAuthentication();
   }
 
 }

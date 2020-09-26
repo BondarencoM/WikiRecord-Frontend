@@ -6,6 +6,6 @@
         <label>Password:</label>
         <input class="form-control" type="password" />
 
-        <button class="btn btn-primary">Log in</button>
+        <button class="btn btn-primary" (click)="$event.preventDefault(); onClick()">Log in</button>
     </form>
 </div>
