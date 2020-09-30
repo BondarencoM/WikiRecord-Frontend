@@ -13,7 +13,11 @@ export class StandardHeaderComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.getAuthenticatedeUser().then(user => this.user = user)
     this.authService.onUserLoaded(user => this.user = user)
   }
 
+  loginButtonClicked(){
+    this.authService.startAuthentication()
+  }
 }
