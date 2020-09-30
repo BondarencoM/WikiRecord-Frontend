@@ -11,9 +11,9 @@ export class AuthService {
     authority: environment.auathenticationAuthority,
     client_id: 'angular-app',
     redirect_uri: 'http://localhost:4200/auth-callback',
-    post_logout_redirect_uri: 'http://localhost:4200/',
+    post_logout_redirect_uri: window.origin,
     response_type: 'id_token token',
-    scope: 'openid profile',
+    scope: 'openid profile recommendation-service user-profile-service',
     filterProtocolClaims: true,
     loadUserInfo: true
 })
