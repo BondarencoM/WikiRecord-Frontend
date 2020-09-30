@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UserManager, User, UserManagerEvents } from 'oidc-client';
+import { UserManager, User, UserManagerEvents, Profile } from 'oidc-client';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { UserManager, User, UserManagerEvents } from 'oidc-client';
 export class AuthService {
 
   private manager = new UserManager({
-    authority: 'https://localhost:6001/',
+    authority: environment.auathenticationAuthority,
     client_id: 'angular-app',
     redirect_uri: 'http://localhost:4200/auth-callback',
     post_logout_redirect_uri: 'http://localhost:4200/',
@@ -28,17 +29,15 @@ export class AuthService {
   }
 
   onUserLoaded(callback: (user: AuthenticatedUser) => void){
-    this.manager.events.addUserLoaded((u) => callback(new AuthenticatedUser(u)))
+    this.manager.events.addUserLoaded(u => callback(new AuthenticatedUser(u)))
   }
-
-
 }
 
 export class AuthenticatedUser{
 
   constructor(private user: User){}
 
-  get claims() : unknown {
+  get claims() : Profile {
     return this.user.profile || null 
   }
 
