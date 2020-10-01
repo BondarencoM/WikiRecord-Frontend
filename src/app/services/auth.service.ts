@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { UserManager, User, UserManagerEvents, Profile } from 'oidc-client';
+import { UserManager, UserManagerEvents } from 'oidc-client';
 import { environment } from 'src/environments/environment';
+import { AuthenticatedUser } from '../models/AuthenticatedUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+
   private manager = new UserManager({
     authority: environment.auathenticationAuthority,
     client_id: 'angular-app',
     redirect_uri: 'http://localhost:4200/auth-callback',
-    post_logout_redirect_uri: window.origin,
+    post_logout_redirect_uri: window.origin + '/auth-signout-callback',
     response_type: 'id_token token',
     scope: 'openid profile recommendation-service user-profile-service',
     filterProtocolClaims: true,
@@ -23,6 +25,12 @@ export class AuthService {
   startAuthentication = () => this.manager.signinRedirect()
 
   completeAuthentication = () => this.manager.signinRedirectCallback()
+  
+  completeSignOut = () => this.manager.signoutRedirectCallback()
+
+  logout(){
+    this.manager.signoutRedirect()
+  } 
 
   getAuthenticatedeUser(): Promise<AuthenticatedUser>{
     return this.manager.getUser().then( u => new AuthenticatedUser(u) )
@@ -31,18 +39,9 @@ export class AuthService {
   onUserLoaded(callback: (user: AuthenticatedUser) => void){
     this.manager.events.addUserLoaded(u => callback(new AuthenticatedUser(u)))
   }
-}
 
-export class AuthenticatedUser{
-
-  constructor(private user: User){}
-
-  get claims() : Profile {
-    return this.user.profile || null 
+  onUserUnloaded(callback: () => void){
+    this.manager.events.addUserUnloaded(callback)
   }
-
-  isLoggedIn = () => this.user != null && !this.user.expired
-
-  getAuthorizationHeaderValue = () => this.user ? this.user.token_type + ' ' + this.user.access_token : null
-
 }
+

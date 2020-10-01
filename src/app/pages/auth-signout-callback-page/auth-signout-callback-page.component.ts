@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-auth-callback-page',
+  selector: 'app-auth-signout-callback-page',
   template: `<p>Redirecting...</p>`,
 })
-export class AuthCallbackPageComponent implements OnInit {
+export class AuthSignoutCallbackPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
@@ -14,6 +14,7 @@ export class AuthCallbackPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.authService.completeAuthentication().then(() => this.router.navigate(['/']))
+    this.authService.completeSignOut().then(() => this.router.navigate(['/']))
   }
+
 }

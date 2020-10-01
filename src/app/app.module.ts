@@ -14,6 +14,7 @@ import { RecommendationPageComponent } from './pages/recommendation-page/recomme
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { AuthCallbackPageComponent } from './pages/auth-callback-page/auth-callback-page.component';
 import { AuthService } from './services/auth.service';
+import { AuthSignoutCallbackPageComponent } from './pages/auth-signout-callback-page/auth-signout-callback-page.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AuthService } from './services/auth.service';
     RecommendationPageComponent,
     LoadingIndicatorComponent,
     AuthCallbackPageComponent,
+    AuthSignoutCallbackPageComponent,
   ],
   imports: [
     BrowserModule,
