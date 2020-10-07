@@ -15,6 +15,8 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
 import { AuthCallbackPageComponent } from './pages/auth-callback-page/auth-callback-page.component';
 import { AuthService } from './services/auth.service';
 import { AuthSignoutCallbackPageComponent } from './pages/auth-signout-callback-page/auth-signout-callback-page.component';
+import { RegistrationCallbackPageComponent } from './pages/registration-callback-page/registration-callback-page.component';
+import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-page/auth-silent-callback-page.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { AuthSignoutCallbackPageComponent } from './pages/auth-signout-callback-
     LoadingIndicatorComponent,
     AuthCallbackPageComponent,
     AuthSignoutCallbackPageComponent,
+    RegistrationCallbackPageComponent,
+    AuthSilentCallbackPageComponent,
   ],
   imports: [
     BrowserModule,

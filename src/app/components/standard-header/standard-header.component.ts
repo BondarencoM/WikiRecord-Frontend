@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticatedUser } from 'src/app/models/AuthenticatedUser';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-standard-header',
@@ -15,15 +16,19 @@ export class StandardHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getAuthenticatedeUser().then(user => this.user = user)
-    this.authService.onUserLoaded(user => this.user = user)
-    this.authService.onUserUnloaded(() => this.user = null)
+    this.authService.UserChanged.subscribe(user => this.user = user)
   }
 
-  loginButtonClicked(){
+  loginButtonClicked(): void{
     this.authService.startAuthentication()
   }
 
-  logoutButtonClicked(){
-    this.authService.logout()
+  logoutButtonClicked(): void{
+    this.authService.startSignOut()
+  }
+
+  signUpButtonClicked(): void{
+    localStorage.setItem('restore-url', window.location.pathname)
+    window.location.href = environment.authenticationAuthority + '/Account/Register?returnUrl=' + encodeURIComponent(window.location.origin + '/registration-callback')
   }
 }
