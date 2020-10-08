@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticatedUser } from 'src/app/models/AuthenticatedUser';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-standard-header',
@@ -28,7 +27,6 @@ export class StandardHeaderComponent implements OnInit {
   }
 
   signUpButtonClicked(): void{
-    localStorage.setItem('restore-url', window.location.pathname)
-    window.location.href = environment.authenticationAuthority + '/Account/Register?returnUrl=' + encodeURIComponent(window.location.origin + '/registration-callback')
+    this.authService.startRegistrationRedirect()
   }
 }

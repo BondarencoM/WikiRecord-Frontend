@@ -14,7 +14,7 @@ export class AuthSignoutCallbackPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.authService.completeSignOut().then(() => this.router.navigate(['/']))
+    this.authService.completeSignOut()
   }
 
 }

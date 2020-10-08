@@ -14,7 +14,8 @@ export class AuthService {
     client_id: 'angular-app',
     redirect_uri: 'http://localhost:4200/auth-callback',
     post_logout_redirect_uri: window.origin + '/auth-signout-callback',
-    response_type: 'id_token token',
+    response_type: 'code',
+    automaticSilentRenew: true,
     scope: 'openid profile recommendation-service user-profile-service',
     filterProtocolClaims: true,
     loadUserInfo: true,
@@ -24,33 +25,51 @@ export class AuthService {
   UserChanged = new EventEmitter<AuthenticatedUser>()
 
   constructor(private router: Router) {
-    Oidc.Log.logger = console
+    if (!environment.production) { Oidc.Log.logger = console }
+
     this.manager.events.addUserLoaded( u => this.notifyUserChanged(u))
     this.manager.events.addUserUnloaded(() => this.notifyUserChanged())
    }
 
   private notifyUserChanged(user?: Oidc.User): void{
-      this.UserChanged.emit( user ? new AuthenticatedUser(user) : null)
+    this.UserChanged.emit(user ? new AuthenticatedUser(user) : null)
   }
 
-  startAuthentication = () => this.manager.signinRedirect()
-
-  completeAuthentication = () => this.manager.signinRedirectCallback()
-
-  startAuthenticationSilently = (redirectUrl = '/') => {
-    this.manager.signinSilent()
-      .then(() => this.router.navigateByUrl(redirectUrl));
+  startAuthentication(): void{
+    this.saveRestorePath()
+    this.manager.signinRedirect()
   }
 
-  startSignOut = () => this.manager.signoutRedirect()
+  completeAuthentication = () => this.manager.signinRedirectCallback().then(() => this.restorePath())
+
+  startRegistrationRedirect(): void {
+    this.saveRestorePath()
+    const callback = encodeURIComponent(window.location.origin + '/registration-callback')
+    window.location.href = environment.authenticationAuthority + '/Account/Register?returnUrl=' + callback
+  }
+
+  startAuthenticationSilently(): void{
+    this.manager.signinSilent().then(this.restorePath);
+  }
 
   completeAuthenticationSilently = () => this.manager.signinSilentCallback()
 
-  completeSignOut = () => this.manager.signoutRedirectCallback()
+  startSignOut(): void {
+    this.saveRestorePath()
+    this.manager.signoutRedirect()
+  }
 
+  completeSignOut = () => this.manager.signoutRedirectCallback().then(this.restorePath)
 
-  getAuthenticatedeUser(): Promise<AuthenticatedUser>{
-    return this.manager.getUser().then( u => new AuthenticatedUser(u) )
+  async getAuthenticatedeUser(): Promise<AuthenticatedUser>{
+    const user = await this.manager.getUser();
+    return new AuthenticatedUser(user);
+  }
+
+  private saveRestorePath = () => localStorage.setItem('restore-url', window.location.pathname)
+
+  private restorePath = () => {
+    this.router.navigateByUrl(localStorage.getItem('restore-url') || '/')
   }
 
 }
