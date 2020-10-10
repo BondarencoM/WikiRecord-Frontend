@@ -17,6 +17,8 @@ import { AuthService } from './services/auth.service';
 import { AuthSignoutCallbackPageComponent } from './pages/auth-signout-callback-page/auth-signout-callback-page.component';
 import { RegistrationCallbackPageComponent } from './pages/registration-callback-page/registration-callback-page.component';
 import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-page/auth-silent-callback-page.component';
+import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,9 +35,11 @@ import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-pa
     AuthSignoutCallbackPageComponent,
     RegistrationCallbackPageComponent,
     AuthSilentCallbackPageComponent,
+    AddPersonaPageComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
