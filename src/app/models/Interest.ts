@@ -2,6 +2,7 @@ export class Interest{
 
     name: string
     type: InterestType
+    wikiId: string
 
     static AttachMethods(input: Interest): Interest {
         const result = Object.assign(new Interest(), input)

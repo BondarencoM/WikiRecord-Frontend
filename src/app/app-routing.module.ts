@@ -7,6 +7,7 @@ import { AuthSignoutCallbackPageComponent } from './pages/auth-signout-callback-
 import { RegistrationCallbackPageComponent } from './pages/registration-callback-page/registration-callback-page.component';
 import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-page/auth-silent-callback-page.component';
 import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
+import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'registration-callback', component: RegistrationCallbackPageComponent},
   {path: 'auth-silent-callback', component: AuthSilentCallbackPageComponent},
   {path: 'personas/add', component: AddPersonaPageComponent},
+  {path: 'interests/add', component: AddInterestPageComponent},
   {path: '**', component: HomePageComponent},
 
 

@@ -19,6 +19,7 @@ import { RegistrationCallbackPageComponent } from './pages/registration-callback
 import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-page/auth-silent-callback-page.component';
 import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
 import { FormsModule } from '@angular/forms';
+import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { FormsModule } from '@angular/forms';
     RegistrationCallbackPageComponent,
     AuthSilentCallbackPageComponent,
     AddPersonaPageComponent,
+    AddInterestPageComponent,
   ],
   imports: [
     BrowserModule,
