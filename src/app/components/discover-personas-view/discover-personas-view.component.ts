@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscoverPersonaViewModel } from 'src/app/models/DiscoverPersonaViewModel';
+import { DiscoverPersonaViewModel } from 'src/app/models/persona/DiscoverPersonaViewModel';
 import { PersonasService } from 'src/app/services/personas.service';
 
 @Component({

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { DiscoverPersonaViewModel } from '../models/DiscoverPersonaViewModel';
-import { AddPersonaVM } from '../models/view-models/AddPersonaVM';
-import { Persona } from '../models/Persona';
+import { DiscoverPersonaViewModel } from '../models/persona/DiscoverPersonaViewModel';
+import { AddPersonaVM } from '../models/persona/AddPersonaVM';
+import { Persona } from '../models/persona/Persona';
 
 
 @Injectable({

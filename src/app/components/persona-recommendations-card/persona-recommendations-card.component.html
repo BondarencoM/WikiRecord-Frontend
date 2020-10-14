@@ -1,17 +1,17 @@
 <div class="card" style="width: 18rem;" >
-        <img 
-            class="card-img-top person-card-image" 
-            src="{{discoverPersonaModel.persona.getProfileImagePath()}}" 
-            alt="Image of {{discoverPersonaModel.persona.name}}"
-        >
-        <div class="card-body">
-            <h5 class="card-title">{{discoverPersonaModel.persona.name}}</h5>
-            <app-interest-short-entry 
-            class="card-text cursor-pointer" 
-            [interest]="recommendation.interest"
-            *ngFor="let recommendation of discoverPersonaModel.shortRecommendationsList"
-            routerLink="recommendations/{{recommendation.id}}"
-            > 
-            </app-interest-short-entry>
-</div>
+    <img 
+        class="card-img-top person-card-image" 
+        src="{{discoverPersonaModel.persona.getProfileImagePath()}}" 
+        alt="Image of {{discoverPersonaModel.persona.name}}"
+    >
+    <div class="card-body">
+        <h5 class="card-title">{{discoverPersonaModel.persona.name}}</h5>
+        <app-interest-short-entry 
+        *ngFor="let recommendation of discoverPersonaModel.shortRecommendationsList"
+        [interest]="recommendation.interest"
+        class="card-text cursor-pointer" 
+        routerLink="recommendations/{{recommendation.id}}"
+        > 
+        </app-interest-short-entry>
     </div>
+</div>

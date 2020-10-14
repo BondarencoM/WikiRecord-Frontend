@@ -1,4 +1,4 @@
-import { Persona } from './Persona';
+import { Persona } from './persona/Persona';
 import { Interest } from './Interest';
 
 export class Recommendation{

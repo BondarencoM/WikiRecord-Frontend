@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Persona } from 'src/app/models/Persona';
+import { Persona } from 'src/app/models/persona/Persona';
 
 @Component({
   selector: 'app-persona-recommendations-card',
