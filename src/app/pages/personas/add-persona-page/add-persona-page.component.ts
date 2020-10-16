@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AddPersonaVM } from 'src/app/models/persona/AddPersonaVM';
 import { WikiPersonVM } from 'src/app/models/persona/WikiPersonVM';
+import { WikiSearchResult } from 'src/app/models/wiki/WikiSearchResult';
 import { PersonasService } from 'src/app/services/personas.service';
 import { WikibaseService } from 'src/app/services/wikibase.service';
 
@@ -13,6 +15,8 @@ export class AddPersonaPageComponent implements OnInit {
 
   model = new AddPersonaVM()
   wikiModel: WikiPersonVM[]
+  isLoading = false
+  personaSubscription: Subscription
 
   constructor(
     private personasService: PersonasService,
@@ -25,7 +29,8 @@ export class AddPersonaPageComponent implements OnInit {
   onSubmit(): void{}
 
   updateSugestions(): void{
-    let wordSearch = this.model.name;
+    this.startLoading()
+    const wordSearch = this.model.name;
     setTimeout(async () => {
         if (this.searchStillRelevant(wordSearch)) {
           await this.populateSuggestions(wordSearch)
@@ -33,25 +38,45 @@ export class AddPersonaPageComponent implements OnInit {
     }, 300);
   }
 
-  private searchStillRelevant(search: string){
-    return this.model.name && search == this.model.name
+  private startLoading(): void{
+    this.wikiModel = []
+    this.isLoading = true;
   }
 
-  private async populateSuggestions(searchName: string): Promise<void>{    
+  private endLoading = (): void => {this.isLoading = false}
 
-    let searchResult = await this.wiki.GetSearchResults(searchName)
-    
-    if(this.searchStillRelevant(searchName) == false) 
+  private searchStillRelevant(search: string): boolean{
+    return this.model.name && search === this.model.name
+  }
+
+  private populateSuggestions(searchName: string): void{
+
+    this.personaSubscription = this.wiki.GetSearchResults(searchName).subscribe({
+      next: async (segment) => await this.AddDetailed(searchName, segment),
+      error: console.error,
+      complete: this.endLoading
+    })
+  }
+
+  async AddDetailed(search: string, segment: WikiSearchResult): Promise<void>{
+
+    if (!segment.search || this.searchStillRelevant(search) === false) {
       return;
+    }
 
-    let ids = searchResult.search.map(entity => entity.id)
-    let entities = await this.wiki.GetEntitiesByIds(...ids)
+    if (this.wikiModel.length > 25 ) {
+      this.personaSubscription.unsubscribe()
+    }
 
-    if (!this.searchStillRelevant(searchName))
+    const ids = segment.search.map(entity => entity.id)
+    const entities = await this.wiki.GetEntitiesByIds(...ids)
+
+    if (!entities || !this.searchStillRelevant(search)) {
       return;
+    }
 
-    this.wikiModel = entities
-            .filter(e => (e.claims.P31[0] || "") === "Q5")
+    const newElements = entities
+            .filter(e => e.claims.P31  && e.claims.P31[0] === 'Q5')
             .map(e => new WikiPersonVM({
               wikiId: e.id,
               name: e.labels.en,
@@ -59,11 +84,17 @@ export class AddPersonaPageComponent implements OnInit {
               modified: e.modified
             }))
             .sort(WikiPersonVM.OrderByModifiedDateDesc)
+    this.wikiModel.push(...newElements)
+
+    if (this.wikiModel.length > 25 ) {
+        this.personaSubscription.unsubscribe()
+    }
+
   }
 
-  addPersona(persona: WikiPersonVM){
+  addPersona(persona: WikiPersonVM): void{
     this.personasService.create(new AddPersonaVM(persona)).subscribe(r => console.log(r))
-    this.wikiModel = this.wikiModel.filter( p => p!== persona )
+    this.wikiModel = this.wikiModel.filter( p => p !== persona )
   }
 
 }

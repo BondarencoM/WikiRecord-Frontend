@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
 import WBK from 'wikibase-sdk'
 import { WikiEntity } from '../models/wiki/WikiEntity';
 import { WikiSearchResult } from '../models/wiki/WikiSearchResult';
@@ -16,30 +17,50 @@ export class WikibaseService {
     sparqlEndpoint: 'https://query.wikidata.org/sparql'
   })
 
-  constructor(private http: HttpClient,) { }
+  constructor(private http: HttpClient, ) { }
 
-  async GetSearchResults(searchName: string): Promise<WikiSearchResult>{  
-    const searchQquery : string = this.wiki.searchEntities({
-      search: searchName,
-      language: 'en',
-      limit: 45,
-    })
-
-    return await this.http.get<WikiSearchResult>(searchQquery).toPromise()
+  GetSearchResults(searchName: string): Observable<WikiSearchResult>{
+    return new Observable<WikiSearchResult>(
+      subscriber => this.SearchAndPublishSegment(searchName, 0, subscriber)
+      );
   }
 
-  async GetEntitiesByIds(...ids: string[]): Promise<WikiSimplifiedEntityVM[]>{
-    if(!ids || ids.length == 0) return;
+  SearchAndPublishSegment(query: string, offset: number, subscriber: Subscriber<WikiSearchResult>): void{
 
-    let entitiesQuery : string = this.wiki.getManyEntities({
-      ids, 
+    if (offset > 90 || offset === undefined || offset === null) {
+      return subscriber.complete();
+    }
+
+    const searchQquery: string = this.wiki.searchEntities({
+      search: query,
+      language: 'en',
+      limit: 20,
+      continue: offset,
+    })
+
+    this.http.get<WikiSearchResult>(searchQquery).subscribe(
+      response => {
+        subscriber.next(response)
+        this.SearchAndPublishSegment(query, response['search-continue'], subscriber)
+      }
+    )
+  }
+
+
+
+  async GetEntitiesByIds(...ids: string[]): Promise<WikiSimplifiedEntityVM[]>{
+
+    if (!ids || ids.length === 0) { return; }
+
+    const entitiesQuery: string = this.wiki.getManyEntities({
+      ids,
       languages: ['en'],
       props: [ 'info', 'labels', 'claims', 'descriptions' ],
     })[0]
 
-    let entitiesResponse = await this.http.get<WikiEntity>(entitiesQuery).toPromise()
-    
-    let entities = Object.values<WikiSimplifiedEntityVM>(this.wiki.simplify.entities(entitiesResponse.entities))
+    const entitiesResponse = await this.http.get<WikiEntity>(entitiesQuery).toPromise()
+
+    const entities = Object.values<WikiSimplifiedEntityVM>(this.wiki.simplify.entities(entitiesResponse.entities))
 
     return entities || []
 

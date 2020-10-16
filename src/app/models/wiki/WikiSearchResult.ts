@@ -3,5 +3,6 @@ export interface WikiSearchResult{
         id: string
         label: string
         description: string
-    }[]
+    }[],
+    'search-continue'?: number
 }

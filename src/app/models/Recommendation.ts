@@ -1,5 +1,5 @@
 import { Persona } from './persona/Persona';
-import { Interest } from './Interest';
+import { Interest } from './interest/Interest';
 
 export class Recommendation{
 

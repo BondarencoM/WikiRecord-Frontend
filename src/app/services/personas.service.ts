@@ -21,7 +21,7 @@ export class PersonasService {
     return this.http.get<DiscoverPersonaViewModel[]>(this.URL + '/discover')
   }
 
-  create(model: AddPersonaVM) : Observable<Persona> {
+  create(model: AddPersonaVM): Observable<Persona> {
     return this.http.post<Persona>(this.URL, model)
   }
 }

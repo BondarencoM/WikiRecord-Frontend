@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Interest } from 'src/app/models/Interest';
+import { Subscription } from 'rxjs';
+import { CreateInterestVM } from 'src/app/models/interest/CreateInterestVM';
+import { Interest } from 'src/app/models/interest/Interest';
 import { WikiInterestVM } from 'src/app/models/persona/WikiInterestVM';
-import { WikiIdentifier } from 'src/app/models/wiki/WikiIdentifier';
+import { WikiSearchResult } from 'src/app/models/wiki/WikiSearchResult';
 import { WikiSimplifiedEntityVM } from 'src/app/models/wiki/WikiSimplifiedEntityVM';
+import { InterestsService } from 'src/app/services/interests-service.service';
 import { WikibaseService } from 'src/app/services/wikibase.service';
 
 @Component({
@@ -15,64 +18,78 @@ export class AddInterestPageComponent implements OnInit {
   model = new Interest()
 
   wikiModel: WikiInterestVM[]
-
-  private AcceptedInterestsTypes = [
-    WikiIdentifier.LiteraryWork,
-    WikiIdentifier.Novel,
-    WikiIdentifier.Poem,
-    WikiIdentifier.ShortStory,
-  ].map(e => e.toString())
+  isLoading = false
+  interestSubscription: Subscription
 
   constructor(
     private wiki: WikibaseService,
+    private service: InterestsService
   ) { }
 
   ngOnInit(): void {
   }
 
   updateSugestions(): void{
-    let wordSearch = this.model.name;
-    setTimeout(async () => {
+    this.startLoading()
+    const wordSearch = this.model.name;
+    setTimeout(() => {
         if (this.searchStillRelevant(wordSearch)) {
-          await this.populateSuggestions(wordSearch)
+          this.populateSuggestions(wordSearch)
         }
     }, 300);
   }
 
-  private searchStillRelevant(search: string){
-    return this.model.name && search == this.model.name
+  private startLoading(): void{
+    this.wikiModel = []
+    this.isLoading = true;
   }
 
-  private async populateSuggestions(searchName: string): Promise<void>{    
+  private endLoading = (): void => {this.isLoading = false}
 
-    let searchResult = await this.wiki.GetSearchResults(searchName)
-    
-    if(this.searchStillRelevant(searchName) == false) 
+  private searchStillRelevant(search: string): boolean{
+    return this.model.name && search === this.model.name
+  }
+
+  private populateSuggestions(searchName: string): void{
+    this.interestSubscription = this.wiki.GetSearchResults(searchName).subscribe({
+      next: async (segment) => await this.AddDetailed(searchName, segment),
+      error: console.error,
+      complete: this.endLoading,
+    })
+  }
+
+  async AddDetailed(search: string, segment: WikiSearchResult): Promise<void>{
+    if (this.searchStillRelevant(search) === false) {
       return;
+    }
 
-    let ids = searchResult.search.map(entity => entity.id)
-    let entities = await this.wiki.GetEntitiesByIds(...ids)
+    const ids = segment.search.map(entity => entity.id)
+    const entities = await this.wiki.GetEntitiesByIds(...ids)
 
-    if (!entities || !this.searchStillRelevant(searchName))
+    if (!entities || !this.searchStillRelevant(search)) {
       return;
+    }
 
-    this.wikiModel = entities
-            .filter(e => this.EntityIsInterest(e))
-            .map(e => new WikiInterestVM({
-              wikiId: e.id,
-              name: e.labels.en,
-              description: e.descriptions.en,
-              modified: e.modified
-            }))
-            .sort(WikiInterestVM.OrderByModifiedDateDesc)
+    const newElements = entities
+          .filter(e => this.EntityIsInterest(e))
+          .map(e => new WikiInterestVM({
+            wikiId: e.id,
+            name: e.labels.en,
+            description: e.descriptions.en,
+            modified: e.modified
+          }))
+          .sort(WikiInterestVM.OrderByModifiedDateDesc)
+    this.wikiModel.push(...newElements)
+
   }
 
-  private EntityIsInterest(entity: WikiSimplifiedEntityVM){
-    let type = entity.claims.P31 || ["undefined"]
-    return this.AcceptedInterestsTypes.includes(type[0])
+  private EntityIsInterest(entity: WikiSimplifiedEntityVM): boolean{
+    const type = entity.claims.P31 || ['undefined']
+    return this.service.AcceptedInterestsTypes.includes(type[0])
   }
 
-  addinterest(){
-
+  addInterest(interest: WikiInterestVM): void{
+    this.service.createInterest(new CreateInterestVM(interest)).subscribe(console.log)
+    this.wikiModel = this.wikiModel.filter( i => i !== interest )
   }
 }

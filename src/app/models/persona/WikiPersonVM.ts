@@ -9,7 +9,7 @@ export class WikiPersonVM{
     description: string
     modified: string
 
-    static OrderByModifiedDateDesc (a: WikiPersonVM, b: WikiPersonVM) {
+    static OrderByModifiedDateDesc(a: WikiPersonVM, b: WikiPersonVM): number {
         return b.modified.localeCompare(a.modified)
     }
 }
