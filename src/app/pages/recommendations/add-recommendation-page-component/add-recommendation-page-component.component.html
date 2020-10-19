@@ -1,0 +1,57 @@
+<h2>Register recommednation</h2>
+
+<div [ngSwitch]="stage">
+
+    <!-- Select persona -->
+    <app-wiki-entity-selector 
+    *ngSwitchCase="stages.SelectPersona"
+    #PersonaSelectionForm
+    [ModelMapper] = "PersonaModelMapper"
+    [EntityFilter] = "PersonaEntityFilter"
+    (EntitySelected) = "personaSelected($event)"
+    title = "Select Persona">
+    </app-wiki-entity-selector>
+
+    <!-- Select interest-->
+    <app-wiki-entity-selector 
+    *ngSwitchCase="stages.SelectInterest"
+    #InterestSelectionForm
+    [ModelMapper] = "InterestModelMapper"
+    [EntityFilter] = "InterestEntityFilter"
+    (EntitySelected) = "interestSelected($event)"
+    title = "Select Interest">
+    </app-wiki-entity-selector>
+
+    <!-- Prof and confirm -->
+    <div *ngSwitchCase="stages.Register" class="col col-lg-6">
+        <form (ngSubmit)="addRecommendation()" #submitForm="ngForm">
+            <div class="form-group">
+                <div class="text-muted"> 
+                    Please enter an url to a credible source for this recommendation.
+                    Best sources are official blog posts, interviews, tweets, Youtube videos etc.
+                </div>
+                <input type="url" required class="form-control" placeholder="Proof"
+                    name="context" id="context" [(ngModel)]="model.context" />
+            </div>
+            <button 
+                type="submit" class="btn btn-primary float-right" 
+                [disabled]="!submitForm.form.valid">
+                    Register    
+            </button>
+        </form>
+    </div>
+
+    <div *ngSwitchCase="stages.Loading">
+        <div class="lead">Please wait a second.</div>
+        <app-loading-indicator></app-loading-indicator>
+    </div>
+
+    <!-- Default -->
+    <div *ngSwitchDefault>
+        Something went wrong, this should be displayed
+    </div>
+
+</div>
+
+
+

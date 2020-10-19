@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecommendationsService } from 'src/app/services/recommendations.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Recommendation } from 'src/app/models/Recommendation';
+import { Recommendation } from 'src/app/models/recommendations/Recommendation';
 
 @Component({
   selector: 'app-recommendation-page',

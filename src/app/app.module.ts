@@ -20,6 +20,8 @@ import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-pa
 import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
 import { FormsModule } from '@angular/forms';
 import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
+import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
+import { WikiEntitySelectorComponent } from './components/wiki-entity-selector/wiki-entity-selector.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { AddInterestPageComponent } from './pages/interests/add-interest-page/ad
     AuthSilentCallbackPageComponent,
     AddPersonaPageComponent,
     AddInterestPageComponent,
+    AddRecommendationPageComponentComponent,
+    WikiEntitySelectorComponent,
   ],
   imports: [
     BrowserModule,

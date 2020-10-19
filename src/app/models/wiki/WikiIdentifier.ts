@@ -11,6 +11,7 @@ export enum WikiIdentifier{
     Myth = 'Q12827256',
     Novel = 'Q8261',
     Novella = 'Q149537',
+    Play = 'Q25379',
     Poem = 'Q5185279',
     ShortStory = 'Q49084',
     ShortNovel = 'Q12799318',

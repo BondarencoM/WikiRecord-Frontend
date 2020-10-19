@@ -1,4 +1,4 @@
-import { Recommendation } from '../Recommendation';
+import { Recommendation } from '../recommendations/Recommendation';
 
 export class Persona{
     frid?: string

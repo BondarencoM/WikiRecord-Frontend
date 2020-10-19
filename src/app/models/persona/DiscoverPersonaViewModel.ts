@@ -1,5 +1,5 @@
 import { Persona } from './Persona';
-import { Recommendation } from '../Recommendation';
+import { Recommendation } from '../recommendations/Recommendation';
 
 export class DiscoverPersonaViewModel{
 

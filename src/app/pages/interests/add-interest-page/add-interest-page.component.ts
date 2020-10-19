@@ -71,21 +71,11 @@ export class AddInterestPageComponent implements OnInit {
     }
 
     const newElements = entities
-          .filter(e => this.EntityIsInterest(e))
-          .map(e => new WikiInterestVM({
-            wikiId: e.id,
-            name: e.labels.en,
-            description: e.descriptions.en,
-            modified: e.modified
-          }))
+          .filter(WikiInterestVM.InterestEntityFilter)
+          .map(WikiInterestVM.InterestModelMapper)
           .sort(WikiInterestVM.OrderByModifiedDateDesc)
     this.wikiModel.push(...newElements)
 
-  }
-
-  private EntityIsInterest(entity: WikiSimplifiedEntityVM): boolean{
-    const type = entity.claims.P31 || ['undefined']
-    return this.service.AcceptedInterestsTypes.includes(type[0])
   }
 
   addInterest(interest: WikiInterestVM): void{
