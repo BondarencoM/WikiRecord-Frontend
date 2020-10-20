@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
 import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
 import { WikiEntitySelectorComponent } from './components/wiki-entity-selector/wiki-entity-selector.component';
+import { TokenHttpInterceptor } from './auth/interceptors/TokenHttpInterceptor';
 
 
 @NgModule({
@@ -51,7 +52,14 @@ import { WikiEntitySelectorComponent } from './components/wiki-entity-selector/w
     NgbModule,
 
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenHttpInterceptor,
+      multi: true
+    }, 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

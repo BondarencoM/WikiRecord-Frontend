@@ -9,7 +9,7 @@ import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-pa
 import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
 import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
 import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
-import { AuthGuardService } from './services/guards/auth-guard.service';
+import { AuthGuardService } from './auth/guards/auth-guard.service';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
