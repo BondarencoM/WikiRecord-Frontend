@@ -35,8 +35,8 @@ export class AuthService {
     this.UserChanged.emit(user ? new AuthenticatedUser(user) : null)
   }
 
-  startAuthentication(): void{
-    this.saveRestorePath()
+  startAuthentication(returnUrl: string = null): void{
+    this.saveRestorePath(returnUrl)
     this.manager.signinRedirect()
   }
 
@@ -55,7 +55,8 @@ export class AuthService {
   completeAuthenticationSilently = () => this.manager.signinSilentCallback()
 
   startSignOut(): void {
-    this.saveRestorePath()
+    // for now, returning to the same page after signout may conflict with auth guards   
+    this.saveRestorePath('/')
     this.manager.signoutRedirect()
   }
 
@@ -66,7 +67,7 @@ export class AuthService {
     return new AuthenticatedUser(user);
   }
 
-  private saveRestorePath = () => localStorage.setItem('restore-url', window.location.pathname)
+  private saveRestorePath = (returnUrl: string = null) => localStorage.setItem('restore-url', returnUrl || window.location.pathname)
 
   private restorePath = () => {
     this.router.navigateByUrl(localStorage.getItem('restore-url') || '/')

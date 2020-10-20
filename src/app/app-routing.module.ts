@@ -9,20 +9,19 @@ import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-pa
 import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
 import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
 import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
+import { AuthGuardService } from './services/guards/auth-guard.service';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'recommendations/add', component: AddRecommendationPageComponentComponent},
+  {path: 'recommendations/add', component: AddRecommendationPageComponentComponent, canActivate: [AuthGuardService]},
   {path: 'recommendations/:id', component: RecommendationPageComponent},
   {path: 'auth-callback', component: AuthCallbackPageComponent},
   {path: 'auth-signout-callback', component: AuthSignoutCallbackPageComponent},
   {path: 'registration-callback', component: RegistrationCallbackPageComponent},
   {path: 'auth-silent-callback', component: AuthSilentCallbackPageComponent},
-  {path: 'personas/add', component: AddPersonaPageComponent},
-  {path: 'interests/add', component: AddInterestPageComponent},
+  {path: 'personas/add', component: AddPersonaPageComponent, canActivate: [AuthGuardService]},
+  {path: 'interests/add', component: AddInterestPageComponent, canActivate: [AuthGuardService]},
   {path: '**', component: HomePageComponent},
-
-
 ]
 
 @NgModule({

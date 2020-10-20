@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { WikiInterestVM } from 'src/app/models/persona/WikiInterestVM';
-import { WikiPersonVM } from 'src/app/models/persona/WikiPersonVM';
 import { WikiSearchResult } from 'src/app/models/wiki/WikiSearchResult';
 import { WikiSimplifiedEntityVM } from 'src/app/models/wiki/WikiSimplifiedEntityVM';
 import { WikibaseService } from 'src/app/services/wikibase.service';
