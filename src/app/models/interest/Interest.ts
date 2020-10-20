@@ -1,5 +1,6 @@
 export class Interest{
 
+    id: number
     name: string
     type: InterestType
     wikiId: string

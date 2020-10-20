@@ -79,7 +79,7 @@ export class AddInterestPageComponent implements OnInit {
   }
 
   addInterest(interest: WikiInterestVM): void{
-    this.service.createInterest(new CreateInterestVM(interest)).subscribe(console.log)
+    this.service.create(new CreateInterestVM(interest)).subscribe(console.log)
     this.wikiModel = this.wikiModel.filter( i => i !== interest )
   }
 }

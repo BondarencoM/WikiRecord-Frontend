@@ -14,7 +14,7 @@ export class InterestsService {
 
   constructor(private http: HttpClient) { }
 
-  createInterest(interest: CreateInterestVM): Observable<Interest>{
+  create(interest: CreateInterestVM): Observable<Interest>{
     return this.http.post<Interest>(this.baseUrl, interest)
   }
 

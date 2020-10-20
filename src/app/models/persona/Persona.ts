@@ -1,7 +1,7 @@
 import { Recommendation } from '../recommendations/Recommendation';
 
 export class Persona{
-    frid?: string
+    id: number
     name: string
     imageURL?: string
     recommendations?: Recommendation[]

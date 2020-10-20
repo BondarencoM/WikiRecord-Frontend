@@ -3,10 +3,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WikiEntitySelectorComponent } from 'src/app/components/wiki-entity-selector/wiki-entity-selector.component';
+import { Interest } from 'src/app/models/interest/Interest';
+import { Persona } from 'src/app/models/persona/Persona';
 import { WikiInterestVM } from 'src/app/models/persona/WikiInterestVM';
 import { WikiPersonVM } from 'src/app/models/persona/WikiPersonVM';
 import { CreateRecommendationVM } from 'src/app/models/recommendations/CreateRecommendationVM';
 import { Recommendation } from 'src/app/models/recommendations/Recommendation';
+import { InterestsService } from 'src/app/services/interests-service.service';
+import { PersonasService } from 'src/app/services/personas.service';
 import { RecommendationsService } from 'src/app/services/recommendations.service';
 
 @Component({
@@ -24,9 +28,13 @@ export class AddRecommendationPageComponentComponent implements OnInit {
   stage =  0 as FormStage
 
   model = new CreateRecommendationVM()
-
+  persona : Persona = null
+  interest : Interest = null
+  
   constructor(
     private service: RecommendationsService,
+    private personasService: PersonasService,
+    private interestsService: InterestsService,
     private router: Router,
   ) {}
 
@@ -34,12 +42,22 @@ export class AddRecommendationPageComponentComponent implements OnInit {
   }
 
   personaSelected(persona: WikiPersonVM): void {
-    this.model.persona = persona
+    this.personasService.create(persona).subscribe(persona => {
+      this.persona = persona 
+      this.model.personaId = persona.id
+      console.log(persona)
+    })
+
     this.nextStage()
   }
 
   interestSelected(interest: WikiInterestVM): void {
-    this.model.interest = interest
+    this.interestsService.create(interest).subscribe( interest => {
+      this.interest = interest
+      this.model.interestId = interest.id
+      console.log(interest)
+    })
+
     this.nextStage()
   }
 
