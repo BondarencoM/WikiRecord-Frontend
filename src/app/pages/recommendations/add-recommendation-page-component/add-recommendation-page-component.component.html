@@ -1,29 +1,65 @@
 <h2>Register recommednation</h2>
 
-<div [ngSwitch]="stage">
+<div class="row justify-content-center wrap">
+    <!-- Persona image -->
+    <div *ngIf="persona" class="col-4 text-right "> 
+        <img 
+        class="persona-profile-img"
+        src="{{persona.getProfileImagePath()}}" 
+        alt="Image of {{persona.name}}">
+    </div>
 
-    <!-- Select persona -->
-    <app-wiki-entity-selector 
-    *ngSwitchCase="stages.SelectPersona"
-    #PersonaSelectionForm
-    [ModelMapper] = "PersonaModelMapper"
-    [EntityFilter] = "PersonaEntityFilter"
-    (EntitySelected) = "personaSelected($event)"
-    title = "Select Persona">
-    </app-wiki-entity-selector>
+    <!-- Heart -->
+    <div *ngIf="persona && interest" class="col-3 text-center "> 
+        <img src="/assets/img/heart.webp" alt="Heart icon" class="recommendation-heart">
+    </div>
 
-    <!-- Select interest-->
-    <app-wiki-entity-selector 
-    *ngSwitchCase="stages.SelectInterest"
-    #InterestSelectionForm
-    [ModelMapper] = "InterestModelMapper"
-    [EntityFilter] = "InterestEntityFilter"
-    (EntitySelected) = "interestSelected($event)"
-    title = "Select Interest">
-    </app-wiki-entity-selector>
+    <!-- Interest image-->
+    <div *ngIf="interest" class="col-4"> 
+        <img 
+        class="persona-profile-img"
+        src="{{interest.getIconPath()}}" 
+        alt="Icon for {{interest.name}} {{interest.type}}">
+    </div>
+</div>
 
-    <!-- Prof and confirm -->
-    <div *ngSwitchCase="stages.Register" class="col col-lg-6">
+<div class="row justify-content-center recommendation-view mb-3">
+    <!-- Persona name -->
+    <div class="col-4 text-right"> 
+        {{persona?.name}}
+    </div>
+
+    <div *ngIf="persona && interest" class="col-3 text-center"> recommends </div>
+
+    <!-- Interest name-->
+    <div *ngIf="interest" class="col-4 text-left"> 
+        {{interest.name}}
+    </div>
+</div>
+
+<!-- Select persona -->
+<app-wiki-entity-selector 
+*ngIf="!persona"
+#PersonaSelectionForm
+[ModelMapper] = "PersonaModelMapper"
+[EntityFilter] = "PersonaEntityFilter"
+(EntitySelected) = "personaSelected($event)"
+title = "Select Persona">
+</app-wiki-entity-selector>
+
+<!-- Select interest-->
+<app-wiki-entity-selector 
+*ngIf="persona && !interest"
+#InterestSelectionForm
+[ModelMapper] = "PersonaModelMapper"
+[EntityFilter] = "InterestEntityFilter"
+(EntitySelected) = "interestSelected($event)"
+title = "Select Interest">
+</app-wiki-entity-selector>
+
+<!-- Prof and confirm --> 
+<div *ngIf="persona && interest"  class="row justify-content-center">
+    <div class="col col-lg-6 align-self-center">
         <form (ngSubmit)="addRecommendation()" #submitForm="ngForm">
             <div class="form-group">
                 <div class="text-muted"> 
@@ -35,23 +71,9 @@
             </div>
             <button 
                 type="submit" class="btn btn-primary float-right" 
-                [disabled]="!submitForm.form.valid">
+                [disabled]="!submitForm.form.valid || !this.model.interestId || !this.model.personaId">
                     Register    
             </button>
         </form>
     </div>
-
-    <div *ngSwitchCase="stages.Loading">
-        <div class="lead">Please wait a second.</div>
-        <app-loading-indicator></app-loading-indicator>
-    </div>
-
-    <!-- Default -->
-    <div *ngSwitchDefault>
-        Something went wrong, this should be displayed
-    </div>
-
 </div>
-
-
-

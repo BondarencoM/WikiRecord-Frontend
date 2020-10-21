@@ -43,7 +43,7 @@ export class AddRecommendationPageComponentComponent implements OnInit {
 
   personaSelected(persona: WikiPersonVM): void {
     this.personasService.create(persona).subscribe(persona => {
-      this.persona = persona 
+      this.persona = Persona.AttachMethods(persona) 
       this.model.personaId = persona.id
       console.log(persona)
     })
@@ -53,7 +53,7 @@ export class AddRecommendationPageComponentComponent implements OnInit {
 
   interestSelected(interest: WikiInterestVM): void {
     this.interestsService.create(interest).subscribe( interest => {
-      this.interest = interest
+      this.interest = Interest.AttachMethods(interest)
       this.model.interestId = interest.id
       console.log(interest)
     })
