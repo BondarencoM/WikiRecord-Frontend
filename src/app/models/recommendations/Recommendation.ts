@@ -10,8 +10,8 @@ export class Recommendation{
 
     static AttachMethods(input: Recommendation): Recommendation {
         const result = Object.assign(new Recommendation(), input)
-        result.persona = Persona.AttachMethods(input.persona)
-        result.interest = Interest.AttachMethods(input.interest)
+        if (input.persona) { result.persona = Persona.AttachMethods(input.persona) }
+        if (input.interest) { result.interest = Interest.AttachMethods(input.interest) }
         return result;
     }
 }

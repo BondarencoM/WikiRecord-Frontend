@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DiscoverPersonaViewModel } from 'src/app/models/persona/DiscoverPersonaViewModel';
 import { Persona } from 'src/app/models/persona/Persona';
 
 @Component({
@@ -8,7 +9,7 @@ import { Persona } from 'src/app/models/persona/Persona';
 })
 export class PersonaRecommendationsCardComponent implements OnInit {
 
-  @Input() discoverPersonaModel: any;
+  @Input() discoverPersonaModel: DiscoverPersonaViewModel;
 
   constructor() { }
 

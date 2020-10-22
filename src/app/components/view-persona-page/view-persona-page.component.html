@@ -1,0 +1,38 @@
+<div>
+    <div *ngIf="persona" class="row justify-content-center">
+        <div class="col-3">
+            <img src="{{persona.getProfileImagePath()}}" class="w-100" />
+        </div>
+            
+            <div class="col col-md-5 justify-content-left">
+                <h1>{{persona.name}}</h1>
+    
+                <!-- Description and ID -->
+                <span class="text-muted"> {{persona.description}}</span>
+                <a href="https://www.wikidata.org/wiki/{{persona.wikiId}}" class="btn-link text-muted"> {{persona.wikiId}}</a>
+    
+                <!-- Links -->
+                <div class="mb-3">
+                    <img src="/assets/img/icons/wiki.png" class="img-icon-lg" alt="Wikipedia logo">
+                </div>
+    
+                <!-- Buttons -->
+                <div class="btn-group">
+                    <div class="btn btn-primary"> Register </div>
+                    <div class="btn btn-primary"> Follow </div>
+                </div>
+            </div>
+    </div>
+    
+    <div *ngIf="persona" class="row mt-5">
+        <div *ngFor="let column of persona.getRecommendationsByType() | keyvalue" class="col p-0 m-0 interest-column"> 
+             <div class="lead column-header p-1"> {{column.key}} </div>
+             <div class="p-1">
+                <app-interest-short-entry
+                    *ngFor="let recommendation of column.value"
+                    [interest]="recommendation.interest" >
+                </app-interest-short-entry>
+             </div>
+        </div>
+    </div>
+</div>

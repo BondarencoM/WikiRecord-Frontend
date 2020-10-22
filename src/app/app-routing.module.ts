@@ -10,6 +10,7 @@ import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-p
 import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
 import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
 import { AuthGuardService } from './auth/guards/auth-guard.service';
+import { ViewPersonaPageComponent } from './components/view-persona-page/view-persona-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'registration-callback', component: RegistrationCallbackPageComponent},
   {path: 'auth-silent-callback', component: AuthSilentCallbackPageComponent},
   {path: 'personas/add', component: AddPersonaPageComponent, canActivate: [AuthGuardService]},
+  {path: 'personas/:id', component: ViewPersonaPageComponent},
   {path: 'interests/add', component: AddInterestPageComponent, canActivate: [AuthGuardService]},
   {path: '**', component: HomePageComponent},
 ]

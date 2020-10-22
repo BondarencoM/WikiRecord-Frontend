@@ -1,11 +1,13 @@
 <div class="card" style="width: 18rem;" >
     <img 
-        class="card-img-top person-card-image" 
+        class="card-img-top person-card-image cursor-pointer" 
+        routerLink="/personas/{{discoverPersonaModel.persona.id}}"
         src="{{discoverPersonaModel.persona.getProfileImagePath()}}" 
         alt="Image of {{discoverPersonaModel.persona.name}}"
     >
     <div class="card-body">
-        <h5 class="card-title">{{discoverPersonaModel.persona.name}}</h5>
+        <app-persona-name-button [persona]="discoverPersonaModel.persona" class="card-title lead"> </app-persona-name-button>
+
         <app-interest-short-entry 
         *ngFor="let recommendation of discoverPersonaModel.shortRecommendationsList"
         [interest]="recommendation.interest"

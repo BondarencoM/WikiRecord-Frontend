@@ -3,8 +3,14 @@ import { Recommendation } from '../recommendations/Recommendation';
 export class Persona{
     id: number
     name: string
+    description: string
     imageURL?: string
+    wikiId: string
     recommendations?: Recommendation[]
+
+    constructor(init?: Partial<Persona>){
+        Object.assign(this, init)
+    }
 
     static AttachMethods(input: Persona): Persona{
         const result = Object.assign(new Persona(), input);
@@ -14,7 +20,7 @@ export class Persona{
         return result;
     }
 
-    getProfileImagePath(fallback: string): string{
+    getProfileImagePath(fallback = ''): string{
         return this.imageURL || fallback || '/assets/img/fallback-person-image.jpg'
     }
 }

@@ -14,3 +14,21 @@
   border: 3px solid black;
   border-radius: 1rem;
 }
+
+.btn-link-dark{
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+
+.btn-link-dark:hover{
+  text-decoration: underline;
+}
+
+.img-icon{
+  width: 1.75em;
+}
+
+.img-icon-lg{
+  width: 3em;
+}

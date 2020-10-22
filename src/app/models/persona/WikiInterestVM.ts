@@ -1,3 +1,4 @@
+import { InterestType } from '../interest/Interest'
 import { WikiIdentifier } from '../wiki/WikiIdentifier'
 import { WikiSimplifiedEntityVM } from '../wiki/WikiSimplifiedEntityVM'
 
@@ -11,6 +12,7 @@ export class WikiInterestVM{
     name: string
     description: string
     modified: string
+    instanceOf: string
 
     static OrderByModifiedDateDesc(a: WikiInterestVM, b: WikiInterestVM): number {
         return b.modified.localeCompare(a.modified)
@@ -18,7 +20,7 @@ export class WikiInterestVM{
 
     static InterestEntityFilter(entity: WikiSimplifiedEntityVM): boolean{
         const type = entity.claims.P31 || ['undefined']
-        return AcceptedInterestsTypes.includes(type[0])
+        return Object.keys(AcceptedInterestsTypes).includes(type[0])
     }
 
     static InterestModelMapper(entity: WikiSimplifiedEntityVM): WikiInterestVM {
@@ -26,7 +28,8 @@ export class WikiInterestVM{
           wikiId: entity.id,
           name: entity.labels.en,
           description: entity.descriptions.en,
-          modified: entity.modified
+          modified: entity.modified,
+          instanceOf: entity.claims.P31[0]
         })
     }
 }
@@ -73,11 +76,12 @@ const OtherTypes = [
     WikiIdentifier.CreativeWork,
   ]
 
-export const AcceptedInterestsTypes = [
-    ...BookTypes,
-    ...MovieTypes,
-    ...GameTypes,
-    ...PodcastTypes,
-    ...OtherTypes,
-  ].map(e => e.toString())
+const TypeMapper: {[x: string]: InterestType} = {}
 
+BookTypes   .forEach(e => TypeMapper[e.toString()] = InterestType.Book)
+MovieTypes  .forEach(e => TypeMapper[e.toString()] = InterestType.Movie)
+GameTypes   .forEach(e => TypeMapper[e.toString()] = InterestType.Game)
+PodcastTypes.forEach(e => TypeMapper[e.toString()] = InterestType.Podcast)
+OtherTypes  .forEach(e => TypeMapper[e.toString()] = InterestType.Other)
+
+export const AcceptedInterestsTypes = TypeMapper

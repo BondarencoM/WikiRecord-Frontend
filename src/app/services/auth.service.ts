@@ -55,7 +55,7 @@ export class AuthService {
   completeAuthenticationSilently = () => this.manager.signinSilentCallback()
 
   startSignOut(): void {
-    // for now, returning to the same page after signout may conflict with auth guards   
+    // for now, returning to the same page after signout may conflict with auth guards
     this.saveRestorePath('/')
     this.manager.signoutRedirect()
   }

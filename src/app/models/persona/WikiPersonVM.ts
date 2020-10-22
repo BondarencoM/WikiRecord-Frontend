@@ -20,7 +20,7 @@ export class WikiPersonVM{
           wikiId: entity.id,
           name: entity.labels.en,
           description: entity.descriptions.en,
-          modified: entity.modified
+          modified: entity.modified,
         })
       }
 

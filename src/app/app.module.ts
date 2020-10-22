@@ -23,6 +23,8 @@ import { AddInterestPageComponent } from './pages/interests/add-interest-page/ad
 import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
 import { WikiEntitySelectorComponent } from './components/wiki-entity-selector/wiki-entity-selector.component';
 import { TokenHttpInterceptor } from './auth/interceptors/TokenHttpInterceptor';
+import { ViewPersonaPageComponent } from './components/view-persona-page/view-persona-page.component';
+import { PersonaNameButtonComponent } from './components/persona-name-button/persona-name-button.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { TokenHttpInterceptor } from './auth/interceptors/TokenHttpInterceptor';
     AddInterestPageComponent,
     AddRecommendationPageComponentComponent,
     WikiEntitySelectorComponent,
+    ViewPersonaPageComponent,
+    PersonaNameButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,7 @@ import { TokenHttpInterceptor } from './auth/interceptors/TokenHttpInterceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenHttpInterceptor,
       multi: true
-    }, 
+    },
   ],
   bootstrap: [AppComponent]
 })

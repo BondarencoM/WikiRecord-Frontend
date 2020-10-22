@@ -51,7 +51,7 @@ title = "Select Persona">
 <app-wiki-entity-selector 
 *ngIf="persona && !interest"
 #InterestSelectionForm
-[ModelMapper] = "PersonaModelMapper"
+[ModelMapper] = "InterestModelMapper"
 [EntityFilter] = "InterestEntityFilter"
 (EntitySelected) = "interestSelected($event)"
 title = "Select Interest">

@@ -11,9 +11,9 @@ export class AuthGuardService implements CanActivate {
     private auth: AuthService,
   ) { }
   async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-    let user = await this.auth.getAuthenticatedeUser()
+    const user = await this.auth.getAuthenticatedeUser()
 
-    if(user.isLoggedIn()){
+    if (user.isLoggedIn()){
       return true
     }else{
       this.auth.startAuthentication(route.url.join('/'))

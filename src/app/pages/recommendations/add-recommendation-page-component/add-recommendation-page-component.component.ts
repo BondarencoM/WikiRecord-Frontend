@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { WikiEntitySelectorComponent } from 'src/app/components/wiki-entity-selector/wiki-entity-selector.component';
 import { Interest } from 'src/app/models/interest/Interest';
 import { Persona } from 'src/app/models/persona/Persona';
-import { WikiInterestVM } from 'src/app/models/persona/WikiInterestVM';
+import { AcceptedInterestsTypes, WikiInterestVM } from 'src/app/models/persona/WikiInterestVM';
 import { WikiPersonVM } from 'src/app/models/persona/WikiPersonVM';
 import { CreateRecommendationVM } from 'src/app/models/recommendations/CreateRecommendationVM';
 import { Recommendation } from 'src/app/models/recommendations/Recommendation';
+import { WikiIdentifier } from 'src/app/models/wiki/WikiIdentifier';
 import { InterestsService } from 'src/app/services/interests-service.service';
 import { PersonasService } from 'src/app/services/personas.service';
 import { RecommendationsService } from 'src/app/services/recommendations.service';
@@ -24,13 +25,10 @@ export class AddRecommendationPageComponentComponent implements OnInit {
   @ViewChild('InterestSelectionForm') InterestSelectionForm: WikiEntitySelectorComponent<WikiInterestVM>
   @ViewChild('submitForm') submitForm: FormGroup
 
-  stages = FormStage
-  stage =  0 as FormStage
-
   model = new CreateRecommendationVM()
-  persona : Persona = null
-  interest : Interest = null
-  
+  persona: Persona = null
+  interest: Interest = null
+
   constructor(
     private service: RecommendationsService,
     private personasService: PersonasService,
@@ -41,24 +39,29 @@ export class AddRecommendationPageComponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  personaSelected(persona: WikiPersonVM): void {
-    this.personasService.create(persona).subscribe(persona => {
-      this.persona = Persona.AttachMethods(persona) 
-      this.model.personaId = persona.id
-      console.log(persona)
+  personaSelected(model: WikiPersonVM): void {
+
+    this.persona = new Persona({
+      name: model.name,
     })
 
-    this.nextStage()
+    this.personasService.create(model).subscribe(persona => {
+      this.persona = Persona.AttachMethods(persona)
+      this.model.personaId = persona.id
+    })
   }
 
-  interestSelected(interest: WikiInterestVM): void {
-    this.interestsService.create(interest).subscribe( interest => {
-      this.interest = Interest.AttachMethods(interest)
-      this.model.interestId = interest.id
-      console.log(interest)
+  interestSelected(model: WikiInterestVM): void {
+    this.interest = new Interest({
+      name: model.name,
+      type: AcceptedInterestsTypes[model.instanceOf]
     })
 
-    this.nextStage()
+    this.interestsService.create(model).subscribe( interest => {
+      this.interest = Interest.AttachMethods(interest)
+      this.model.interestId = interest.id
+    })
+
   }
 
   addRecommendation(): void{
@@ -78,23 +81,11 @@ export class AddRecommendationPageComponentComponent implements OnInit {
         }
       }
     })
-    this.nextStage()
   }
 
-  private nextStage(): void{
-    this.stage = (this.stage + 1) % (Object.values(this.stages).length / 2)
-  }
+  get PersonaModelMapper(): any { return WikiPersonVM.PersonaModelMapper}
+  get PersonaEntityFilter(): any { return WikiPersonVM.PersonaEntityFilter}
+  get InterestModelMapper(): any { return WikiInterestVM.InterestModelMapper}
+  get InterestEntityFilter(): any { return WikiInterestVM.InterestEntityFilter}
 
-  get PersonaModelMapper() { return WikiPersonVM.PersonaModelMapper}
-  get PersonaEntityFilter() { return WikiPersonVM.PersonaEntityFilter}
-  get InterestModelMapper() { return WikiInterestVM.InterestModelMapper}
-  get InterestEntityFilter() { return WikiInterestVM.InterestEntityFilter}
-
-}
-
-enum FormStage {
-  SelectPersona,
-  SelectInterest,
-  Register,
-  Loading
 }
