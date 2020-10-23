@@ -10,6 +10,10 @@ export class PersonaWithInterests{
     wikiId: string
     recommendations?: Recommendation[]
 
+    get confirmedRecommendations(): Recommendation[] { return this.recommendations.filter(r => r.isConfirmed) }
+
+    get pendingRecommendations(): Recommendation[] { return this.recommendations.filter(r => !r.isConfirmed) }
+
     static AttachMethods(input: PersonaWithInterests): PersonaWithInterests{
         const result = Object.assign(new PersonaWithInterests(), input);
         if (input.recommendations){
@@ -22,7 +26,7 @@ export class PersonaWithInterests{
         return this.imageURL || fallback || '/assets/img/fallback-person-image.jpg'
     }
 
-    getRecommendationsByType(): {[key: string]: Recommendation[] }{
-        return groupBy<Recommendation>(this.recommendations, r => r.interest.type)
+    geConfirmedtRecommendationsByType(): {[key: string]: Recommendation[] }{
+        return groupBy<Recommendation>(this.confirmedRecommendations, r => r.interest.type)
     }
 }

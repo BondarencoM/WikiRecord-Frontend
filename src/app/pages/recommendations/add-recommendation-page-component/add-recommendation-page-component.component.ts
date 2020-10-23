@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WikiEntitySelectorComponent } from 'src/app/components/wiki-entity-selector/wiki-entity-selector.component';
 import { Interest } from 'src/app/models/interest/Interest';
 import { Persona } from 'src/app/models/persona/Persona';
@@ -34,10 +34,16 @@ export class AddRecommendationPageComponentComponent implements OnInit {
     private personasService: PersonasService,
     private interestsService: InterestsService,
     private router: Router,
-  ) {}
-
-  ngOnInit(): void {
+  )
+  {
+    const nav = this.router.getCurrentNavigation()
+    if (nav && nav.extras.state ) {
+      this.persona = nav.extras.state.persona
+      this.model.personaId = this.persona.id
+    }
   }
+
+  ngOnInit(): void {}
 
   personaSelected(model: WikiPersonVM): void {
 

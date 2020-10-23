@@ -13,26 +13,45 @@
     
                 <!-- Links -->
                 <div class="mb-3">
-                    <img src="/assets/img/icons/wiki.png" class="img-icon-lg" alt="Wikipedia logo">
+                    <!-- <img src="/assets/img/icons/wiki.png" class="img-icon-lg" alt="Wikipedia logo"> -->
                 </div>
     
                 <!-- Buttons -->
-                <div class="btn-group">
-                    <div class="btn btn-primary"> Register </div>
-                    <div class="btn btn-primary"> Follow </div>
+                <div>
+                    <div class="btn btn-primary mx-2" (click)="registerButtonClicked()"> Add recommendation </div>
+                    <div class="btn btn-primary mx-2"> Follow </div>
                 </div>
             </div>
     </div>
     
-    <div *ngIf="persona" class="row mt-5">
-        <div *ngFor="let column of persona.getRecommendationsByType() | keyvalue" class="col p-0 m-0 interest-column"> 
-             <div class="lead column-header p-1"> {{column.key}} </div>
+    <h3 class="mt-5">Recommendations:</h3>
+    <div *ngIf="persona" class="row">
+
+        <!-- Confirmed recommendations -->
+        <div *ngFor="let column of persona.geConfirmedtRecommendationsByType() | keyvalue" class="col p-0 m-0 interest-column"> 
+             <div class="lead column-header p-1"> {{column.key}}s </div>
              <div class="p-1">
                 <app-interest-short-entry
                     *ngFor="let recommendation of column.value"
-                    [interest]="recommendation.interest" >
+                    [interest]="recommendation.interest"
+                    routerLink="/recommendations/{{recommendation.id}}"
+                    class="cursor-pointer"
+                    >
                 </app-interest-short-entry>
              </div>
+        </div>
+
+        <!-- Pending recommendations -->
+        <div class="col p-0">
+            <div class="lead column-header p-1"> Pending </div>
+            <div *ngFor="let recommendation of persona.pendingRecommendations" class="px-1">
+                <app-interest-short-entry
+                [interest]="recommendation.interest"
+                routerLink="/recommendations/{{recommendation.id}}"
+                class="cursor-pointer">
+                </app-interest-short-entry>
+            </div>
+            
         </div>
     </div>
 </div>

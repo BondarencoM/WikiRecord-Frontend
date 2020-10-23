@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaWithInterests } from 'src/app/models/persona/PersonaWithInterests';
 import { Recommendation } from 'src/app/models/recommendations/Recommendation';
 import { PersonasService } from 'src/app/services/personas.service';
@@ -13,18 +13,20 @@ export class ViewPersonaPageComponent implements OnInit {
 
   constructor(
     private personaService: PersonasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   persona: PersonaWithInterests
 
-  // recommendations : [string, Recommendation[]][]
-
   ngOnInit(): void {
     this.personaService.find(this.route.snapshot.params.id).subscribe( persona => {
       this.persona = PersonaWithInterests.AttachMethods(persona)
-      console.log(this.persona.getRecommendationsByType())
     })
+  }
+
+  registerButtonClicked(): void{
+    this.router.navigate(['recommendations', 'add'], {state : {persona: this.persona}})
   }
 
 }

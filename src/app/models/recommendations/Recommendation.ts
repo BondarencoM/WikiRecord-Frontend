@@ -7,6 +7,7 @@ export class Recommendation{
     persona: Persona
     interest: Interest
     context: string
+    isConfirmed: boolean
 
     static AttachMethods(input: Recommendation): Recommendation {
         const result = Object.assign(new Recommendation(), input)
