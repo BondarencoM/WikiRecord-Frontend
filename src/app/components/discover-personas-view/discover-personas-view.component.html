@@ -1,7 +1,7 @@
 <div *ngIf="personas.length" class="card-deck d-flex justify-content-center">
     <app-persona-recommendations-card 
         *ngFor="let persona of personas" 
-        [discoverPersonaModel]="persona"
+        [persona]="persona"
         class="d-flex mb-5"
     > 
     </app-persona-recommendations-card>

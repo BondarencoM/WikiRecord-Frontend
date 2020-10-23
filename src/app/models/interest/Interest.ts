@@ -4,6 +4,7 @@ export class Interest{
     name: string
     type: InterestType
     wikiId: string
+    imageUri: string
 
     constructor(init?: Partial<Interest>){
         Object.assign(this, init)
@@ -16,6 +17,12 @@ export class Interest{
 
     getIconPath(): string{
         return `assets/img/interestIcons/${this.type || 'Other'}.png`
+    }
+
+    getImagePath({fallback = '', width = 600} = {}): string{
+        return this.imageUri ? this.imageUri + '?width=' + width : ''
+                    || fallback
+                    || this.getIconPath()
     }
 }
 

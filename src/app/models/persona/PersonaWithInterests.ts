@@ -1,4 +1,3 @@
-import { from, of, scheduled } from 'rxjs'
 import { groupBy } from 'src/app/utils/ArrayUtils'
 import { Recommendation } from '../recommendations/Recommendation'
 
@@ -6,8 +5,9 @@ export class PersonaWithInterests{
     id: number
     name: string
     description: string
-    imageURL?: string
+    imageUri?: string
     wikiId: string
+    wikipediaUri: string
     recommendations?: Recommendation[]
 
     get confirmedRecommendations(): Recommendation[] { return this.recommendations.filter(r => r.isConfirmed) }
@@ -22,8 +22,14 @@ export class PersonaWithInterests{
         return result;
     }
 
-    getProfileImagePath(fallback = ''): string{
-        return this.imageURL || fallback || '/assets/img/fallback-person-image.jpg'
+    get shortRecommendationsList(): Recommendation[]{
+        return this.confirmedRecommendations.slice(0, 4)
+    }
+
+    getProfileImagePath({fallback = '', width = 600} = {}): string{
+        return this.imageUri ? this.imageUri + '?width=' + width : ''
+                    || fallback
+                    || '/assets/img/fallback-person-image.jpg'
     }
 
     geConfirmedtRecommendationsByType(): {[key: string]: Recommendation[] }{

@@ -49,6 +49,7 @@ export class AddRecommendationPageComponentComponent implements OnInit {
 
     this.persona = new Persona({
       name: model.name,
+      imageUri: model.getImageUri()
     })
 
     this.personasService.create(model).subscribe(persona => {

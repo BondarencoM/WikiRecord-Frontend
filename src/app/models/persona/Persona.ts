@@ -4,8 +4,9 @@ export class Persona{
     id: number
     name: string
     description: string
-    imageURL?: string
+    imageUri?: string
     wikiId: string
+    wikipediaUri: string
     recommendations?: Recommendation[]
 
     constructor(init?: Partial<Persona>){
@@ -20,7 +21,9 @@ export class Persona{
         return result;
     }
 
-    getProfileImagePath(fallback = ''): string{
-        return this.imageURL || fallback || '/assets/img/fallback-person-image.jpg'
+    getProfileImagePath({fallback = '', width = 600} = {}): string{
+        return this.imageUri ? this.imageUri + '?width=' + width : ''
+                    || fallback
+                    || '/assets/img/fallback-person-image.jpg'
     }
 }

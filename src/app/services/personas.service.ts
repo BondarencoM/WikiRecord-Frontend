@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { DiscoverPersonaViewModel } from '../models/persona/DiscoverPersonaViewModel';
 import { AddPersonaVM } from '../models/persona/AddPersonaVM';
 import { Persona } from '../models/persona/Persona';
 import { PersonaWithInterests } from '../models/persona/PersonaWithInterests';
@@ -21,8 +20,8 @@ export class PersonasService {
     return this.http.get<PersonaWithInterests>(`${URL}/${id}/recommendations`)
   }
 
-  getRecommendedPersonas(): Observable<DiscoverPersonaViewModel[]>{
-    return this.http.get<DiscoverPersonaViewModel[]>(URL + '/discover')
+  getRecommendedPersonas(): Observable<PersonaWithInterests[]>{
+    return this.http.get<PersonaWithInterests[]>(URL + '/discover')
   }
 
   create(model: AddPersonaVM): Observable<Persona> {

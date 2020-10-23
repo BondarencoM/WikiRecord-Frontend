@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthenticatedUser } from 'src/app/models/AuthenticatedUser';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./standard-header.component.css']
 })
 export class StandardHeaderComponent implements OnInit {
+
+  search: string
 
   public user: AuthenticatedUser
 
@@ -28,5 +30,8 @@ export class StandardHeaderComponent implements OnInit {
 
   signUpButtonClicked(): void{
     this.authService.startRegistrationRedirect()
+  }
+
+  searchModelChanged(): void {
   }
 }

@@ -1,13 +1,14 @@
-<nav class="navbar" >
+<nav class="navbar navbar-expand-lg" >
     <!-- Logo -->
     <div class="col-auto col-lg-2 cursor-pointer text-center navbar-brand" aria-selected="false"> 
         <h4 routerLink="/"> Comendie </h4>
     </div>
 
     <!-- Search bar -->
-    <div class="col d-flex justify-content-center">
-        <input type="text" class="w-100" placeholder="Search" value="" />
-    </div>
+    <form class="col form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search"  name="search"
+        [ngModel]="search" (ngModelChange)="searchModelChanged()">
+    </form>
 
     <div class="col-auto btn-group">
         <!-- <div routerLink="/personas/add" class="btn btn-primary">

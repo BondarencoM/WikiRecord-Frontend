@@ -4,7 +4,7 @@
         <form>
             <div class="form-group">
                 <label for="name">Name as seen on Wikipedia or the Wikibase ID</label>
-                <input type="text" required class="form-control" name="name"
+                <input type="search" required class="form-control" name="name"
                     [(ngModel)]="searchQueryModel" (ngModelChange)="updateSugestions()">
             </div>
         </form>
@@ -13,7 +13,15 @@
 
 <div class="card-deck d-flex justify-content-center">
     <div *ngFor="let entity of wikiModel || []" class="d-flex col-4 mb-4">
+
+        <!-- Entity card -->
         <div class="card m-0" >
+            <img 
+            *ngIf="entity.images"
+            class="card-img-top person-card-image cursor-pointer" 
+            src="{{entity.getImageUri(600)}}" 
+            alt="Image of {{entity.name}}"
+            >
             <div class="card-body">
                 <a class="card-title" href="https://www.wikidata.org/wiki/{{entity.wikiId}}" target="_blank">
                     <h5>{{entity.name}} </h5>

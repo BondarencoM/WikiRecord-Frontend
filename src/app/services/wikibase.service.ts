@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import WBK from 'wikibase-sdk'
 import { WikiEntity } from '../models/wiki/WikiEntity';
+import { WikiProperties } from '../models/wiki/WikiProperties';
 import { WikiSearchResult } from '../models/wiki/WikiSearchResult';
 import { WikiSimplifiedEntityVM } from '../models/wiki/WikiSimplifiedEntityVM';
 
@@ -65,5 +66,4 @@ export class WikibaseService {
     return entities || []
 
   }
-
 }

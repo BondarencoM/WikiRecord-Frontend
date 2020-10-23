@@ -1,6 +1,9 @@
 import { InterestType } from '../interest/Interest'
+import WBK from 'wikibase-sdk'
 import { WikiIdentifier } from '../wiki/WikiIdentifier'
+import { WikiProperties } from '../wiki/WikiProperties'
 import { WikiSimplifiedEntityVM } from '../wiki/WikiSimplifiedEntityVM'
+import { Images } from 'src/app/utils/Images'
 
 export class WikiInterestVM{
 
@@ -13,6 +16,8 @@ export class WikiInterestVM{
     description: string
     modified: string
     instanceOf: string
+    images: string[]
+
 
     static OrderByModifiedDateDesc(a: WikiInterestVM, b: WikiInterestVM): number {
         return b.modified.localeCompare(a.modified)
@@ -29,8 +34,16 @@ export class WikiInterestVM{
           name: entity.labels.en,
           description: entity.descriptions.en,
           modified: entity.modified,
-          instanceOf: entity.claims.P31[0]
+          instanceOf: entity.claims.P31[0],
+          images: entity.claims[WikiProperties.Image],
+
         })
+    }
+
+    getImageUri(width: number): string{
+      return this.images
+                      ? WBK.getImageUrl(this.images[0], width)
+                      : null
     }
 }
 

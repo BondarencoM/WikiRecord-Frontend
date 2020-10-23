@@ -13,7 +13,9 @@
     
                 <!-- Links -->
                 <div class="mb-3">
-                    <!-- <img src="/assets/img/icons/wiki.png" class="img-icon-lg" alt="Wikipedia logo"> -->
+                    <a *ngIf="persona.wikipediaUri" href="{{persona.wikipediaUri}}" target="_blank">
+                        <img src="/assets/img/icons/wiki.png" class="img-icon-lg" alt="Wikipedia logo">
+                    </a>
                 </div>
     
                 <!-- Buttons -->

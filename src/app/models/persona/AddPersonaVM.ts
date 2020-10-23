@@ -1,5 +1,7 @@
+import { WikiPersonVM } from './WikiPersonVM'
+
 export class AddPersonaVM{
-    name: string
+    wikiId: string
 
     constructor(init?: Partial<AddPersonaVM>){
         Object.assign(this, init)

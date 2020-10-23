@@ -13,7 +13,7 @@ import { WikibaseService } from 'src/app/services/wikibase.service';
 })
 export class AddPersonaPageComponent implements OnInit {
 
-  model = new AddPersonaVM()
+  model = new WikiPersonVM()
   wikiModel: WikiPersonVM[]
   isLoading = false
   personaSubscription: Subscription

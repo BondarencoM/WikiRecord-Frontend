@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DiscoverPersonaViewModel } from 'src/app/models/persona/DiscoverPersonaViewModel';
 import { Persona } from 'src/app/models/persona/Persona';
+import { PersonaWithInterests } from 'src/app/models/persona/PersonaWithInterests';
 
 @Component({
   selector: 'app-persona-recommendations-card',
@@ -9,7 +9,7 @@ import { Persona } from 'src/app/models/persona/Persona';
 })
 export class PersonaRecommendationsCardComponent implements OnInit {
 
-  @Input() discoverPersonaModel: DiscoverPersonaViewModel;
+  @Input() persona: PersonaWithInterests;
 
   constructor() { }
 
