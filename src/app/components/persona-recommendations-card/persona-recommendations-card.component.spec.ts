@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PersonaWithInterests } from 'src/app/models/persona/PersonaWithInterests';
 
 import { PersonaRecommendationsCardComponent } from './persona-recommendations-card.component';
 
@@ -11,11 +12,11 @@ describe('PersonaRecommendationsCardComponent', () => {
       declarations: [ PersonaRecommendationsCardComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
+
     fixture = TestBed.createComponent(PersonaRecommendationsCardComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 

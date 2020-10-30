@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthSilentCallbackPageComponent } from './auth-silent-callback-page.component';
 
@@ -8,6 +9,7 @@ describe('AuthSilentCallbackPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ AuthSilentCallbackPageComponent ]
     })
     .compileComponents();

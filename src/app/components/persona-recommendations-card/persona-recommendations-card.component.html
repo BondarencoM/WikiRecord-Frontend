@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;" >
+<div *ngIf="persona" class="card" style="width: 18rem;" >
     <img 
         class="card-img-top person-card-image cursor-pointer" 
         routerLink="/personas/{{persona.id}}"

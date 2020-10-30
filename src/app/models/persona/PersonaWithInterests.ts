@@ -8,7 +8,7 @@ export class PersonaWithInterests{
     imageUri?: string
     wikiId: string
     wikipediaUri: string
-    recommendations?: Recommendation[]
+    recommendations: Recommendation[] = []
 
     get confirmedRecommendations(): Recommendation[] { return this.recommendations.filter(r => r.isConfirmed) }
 

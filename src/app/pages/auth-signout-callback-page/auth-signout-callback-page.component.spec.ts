@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthSignoutCallbackPageComponent } from './auth-signout-callback-page.component';
 
@@ -8,7 +9,8 @@ describe('AuthSignoutCallbackPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthSignoutCallbackPageComponent ]
+      imports: [RouterTestingModule],
+      declarations: [ AuthSignoutCallbackPageComponent ],
     })
     .compileComponents();
   });
