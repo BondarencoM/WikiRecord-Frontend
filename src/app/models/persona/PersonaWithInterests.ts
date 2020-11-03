@@ -10,6 +10,10 @@ export class PersonaWithInterests{
     wikipediaUri: string
     recommendations: Recommendation[] = []
 
+    constructor(init?: Partial<PersonaWithInterests>){
+        Object.assign(this, init)
+    }
+
     get confirmedRecommendations(): Recommendation[] { return this.recommendations.filter(r => r.isConfirmed) }
 
     get pendingRecommendations(): Recommendation[] { return this.recommendations.filter(r => !r.isConfirmed) }
