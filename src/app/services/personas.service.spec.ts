@@ -18,7 +18,7 @@ describe('PersonasService', () => {
     service = TestBed.inject(PersonasService);
   });
 
-  afterEach(()=>{
+  afterEach(() => {
     httpTestingController.verify()
   })
 
@@ -31,8 +31,8 @@ describe('PersonasService', () => {
     const persona = new PersonaWithInterests({name: 'Testing Name'})
 
     service.find(1).subscribe(expectSuccessWith(persona))
-  
-    const req = httpTestingController.expectOne(environment.personasServiceURL+'/1/recommendations')
+
+    const req = httpTestingController.expectOne(environment.personasServiceURL + '/1/recommendations')
     expect(req.request.method).toEqual('GET');
     req.flush(persona)
 
@@ -44,10 +44,10 @@ describe('PersonasService', () => {
       new PersonaWithInterests({name: 'Testing Name'}),
       new PersonaWithInterests({name: 'Naming Test'}),
     ]
-    
+
     service.getRecommendedPersonas().subscribe(expectSuccessWith(personas))
-  
-    const req = httpTestingController.expectOne(environment.personasServiceURL+'/discover')
+
+    const req = httpTestingController.expectOne(environment.personasServiceURL + '/discover')
     expect(req.request.method).toEqual('GET');
     req.flush(personas)
 

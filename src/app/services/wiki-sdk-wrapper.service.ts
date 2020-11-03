@@ -6,7 +6,7 @@ import WBK from 'wikibase-sdk'
 })
 
 export class WikiSdkWrapperService {
-  
+
   private wiki = WBK({
     instance: 'https://www.wikidata.org',
     sparqlEndpoint: 'https://query.wikidata.org/sparql'
@@ -25,15 +25,15 @@ export class WikiSdkWrapperService {
   }
 }
 
-export interface IWikiSearchEntitiesOptions{ 
-  search: string; 
-  language: string; 
-  limit: number; 
-  continue: number; 
+export interface IWikiSearchEntitiesOptions{
+  search: string;
+  language: string;
+  limit: number;
+  continue: number;
 }
 
-export interface IWikiGetEntitiesOptions { 
+export interface IWikiGetEntitiesOptions {
   ids: string[];
   languages: string[];
-  props: string[]; 
+  props: string[];
 }

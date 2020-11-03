@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { error } from 'protractor';
 import { Observable, Subscriber } from 'rxjs';
 import { WikiEntity } from '../models/wiki/WikiEntity';
 import { WikiSearchResult } from '../models/wiki/WikiSearchResult';
@@ -48,7 +47,7 @@ export class WikibaseService {
 
   async GetEntitiesByIds(...ids: string[]): Promise<WikiSimplifiedEntityVM[]>{
 
-    if (!ids || ids.length === 0) { return; }
+    if (!ids || ids.length === 0) { return Promise.resolve([]) }
 
     const entitiesQuery: string = this.wiki.getManyEntities({
       ids,

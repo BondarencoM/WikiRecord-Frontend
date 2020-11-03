@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { PartialObserver } from "rxjs";
+import { PartialObserver } from 'rxjs';
 
 export const expectSuccessWith = <T>(response: T): PartialObserver<T> => {
     return {
