@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DiscoverPersonasViewComponent } from './discover-personas-view.component';
@@ -8,7 +9,8 @@ describe('DiscoverPersonasViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiscoverPersonasViewComponent ]
+      imports: [ HttpClientTestingModule ],
+      declarations: [ DiscoverPersonasViewComponent ],
     })
     .compileComponents();
   });

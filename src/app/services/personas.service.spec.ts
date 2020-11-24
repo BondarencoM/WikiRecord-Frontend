@@ -12,7 +12,7 @@ describe('PersonasService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule]
     });
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(PersonasService);
