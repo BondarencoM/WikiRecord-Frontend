@@ -4,16 +4,19 @@ import { WikiEntitySelectorComponent } from '../components/wiki-entity-selector/
 
 import { InterestsService } from './interests-service.service';
 
-describe('InterestsServiceService', () => {
+beforeEach(async () => {
+  await TestBed.configureTestingModule({
+    imports: [HttpClientTestingModule ],
+    declarations: [ WikiEntitySelectorComponent ]
+  })
+  .compileComponents();
+});
 
+describe('InterestsServiceService', () => {
   let service: InterestsService;
-  
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule ],
-      declarations: [ WikiEntitySelectorComponent ]
-    })
-    .compileComponents();
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
     service = TestBed.inject(InterestsService);
   });
 

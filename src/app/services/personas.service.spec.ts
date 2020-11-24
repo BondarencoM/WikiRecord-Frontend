@@ -35,7 +35,7 @@ describe('PersonasService', () => {
     const req = httpTestingController.expectOne(environment.personasServiceURL + '/1/recommendations')
     expect(req.request.method).toEqual('GET');
     req.flush(persona)
-    
+
   });
 
   it('should get personas for discovery', () => {
@@ -50,6 +50,7 @@ describe('PersonasService', () => {
     const req = httpTestingController.expectOne(environment.personasServiceURL + '/discover')
     expect(req.request.method).toEqual('GET');
     req.flush(personas)
+
   });
 
 
