@@ -1,4 +1,4 @@
-import { InterestType } from '../interest/Interest'
+import { InterestType } from './Interest'
 import WBK from 'wikibase-sdk'
 import { WikiIdentifier } from '../wiki/WikiIdentifier'
 import { WikiProperties } from '../wiki/WikiProperties'

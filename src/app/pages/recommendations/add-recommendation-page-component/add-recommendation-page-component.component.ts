@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WikiEntitySelectorComponent } from 'src/app/components/wiki-entity-selector/wiki-entity-selector.component';
 import { Interest } from 'src/app/models/interest/Interest';
 import { Persona } from 'src/app/models/persona/Persona';
-import { AcceptedInterestsTypes, WikiInterestVM } from 'src/app/models/persona/WikiInterestVM';
+import { AcceptedInterestsTypes, WikiInterestVM } from 'src/app/models/interest/WikiInterestVM';
 import { WikiPersonVM } from 'src/app/models/persona/WikiPersonVM';
 import { CreateRecommendationVM } from 'src/app/models/recommendations/CreateRecommendationVM';
 import { Recommendation } from 'src/app/models/recommendations/Recommendation';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CreateInterestVM } from 'src/app/models/interest/CreateInterestVM';
 import { Interest } from 'src/app/models/interest/Interest';
-import { WikiInterestVM } from 'src/app/models/persona/WikiInterestVM';
+import { WikiInterestVM } from 'src/app/models/interest/WikiInterestVM';
 import { WikiSearchResult } from 'src/app/models/wiki/WikiSearchResult';
 import { WikiSimplifiedEntityVM } from 'src/app/models/wiki/WikiSimplifiedEntityVM';
 import { InterestsService } from 'src/app/services/interests-service.service';
