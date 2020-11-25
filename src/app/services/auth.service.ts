@@ -37,10 +37,14 @@ export class AuthService {
 
   startAuthentication(returnUrl: string = null): void{
     this.saveRestorePath(returnUrl)
-    this.manager.signinRedirect()
+    this.manager.signinRedirect().catch(e => console.log({authenticationError: e}))
   }
 
-  completeAuthentication = () => this.manager.signinRedirectCallback().then(() => this.restorePath())
+  completeAuthentication = () => {
+    if(window.location.hash){
+      this.manager.signinRedirectCallback().then(() => this.restorePath())
+    }
+  } 
 
   startRegistrationRedirect(): void {
     this.saveRestorePath()
@@ -63,8 +67,13 @@ export class AuthService {
   completeSignOut = () => this.manager.signoutRedirectCallback().then(this.restorePath)
 
   async getAuthenticatedeUser(): Promise<AuthenticatedUser>{
-    const user = await this.manager.getUser();
-    return new AuthenticatedUser(user);
+    try{
+      const user = await this.manager.getUser();
+      return new AuthenticatedUser(user);
+    }catch(ex){
+      console.log({authenticationError: ex})
+    }
+    
   }
 
   private saveRestorePath = (returnUrl: string = null) => localStorage.setItem('restore-url', returnUrl || window.location.pathname)
