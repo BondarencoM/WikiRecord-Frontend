@@ -15,9 +15,6 @@ describe('RecommendationPageComponent', () => {
     })
     .compileComponents();
 
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(RecommendationPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -13,9 +13,7 @@ describe('RegistrationCallbackPageComponent', () => {
       declarations: [ RegistrationCallbackPageComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationCallbackPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

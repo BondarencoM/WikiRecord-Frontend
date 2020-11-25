@@ -11,9 +11,7 @@ describe('LoadingIndicatorComponent', () => {
       declarations: [ LoadingIndicatorComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoadingIndicatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

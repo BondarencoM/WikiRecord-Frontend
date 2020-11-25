@@ -12,9 +12,7 @@ describe('AddPersonaPageComponent', () => {
       imports: [HttpClientTestingModule ],
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AddPersonaPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

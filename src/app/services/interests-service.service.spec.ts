@@ -8,7 +8,7 @@ describe('InterestsServiceService', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule ],
+      imports: [ HttpClientTestingModule ],
     })
     .compileComponents();
 

@@ -13,9 +13,7 @@ describe('AuthSilentCallbackPageComponent', () => {
       declarations: [ AuthSilentCallbackPageComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AuthSilentCallbackPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

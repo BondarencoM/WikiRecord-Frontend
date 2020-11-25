@@ -11,9 +11,7 @@ describe('PersonaNameButtonComponent', () => {
       declarations: [ PersonaNameButtonComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(PersonaNameButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

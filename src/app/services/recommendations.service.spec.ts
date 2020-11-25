@@ -7,11 +7,10 @@ import { RecommendationsService } from './recommendations.service';
 describe('RecommendationsService', () => {
   let service: RecommendationsService;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule],
     })
-    .compileComponents();
     service = TestBed.inject(RecommendationsService);
   });
 

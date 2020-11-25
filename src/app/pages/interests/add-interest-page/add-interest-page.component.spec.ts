@@ -13,9 +13,7 @@ describe('AddInterestPageComponent', () => {
       declarations: [ AddInterestPageComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AddInterestPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -14,9 +14,7 @@ describe('AddRecommendationPageComponentComponent', () => {
       declarations: [ AddRecommendationPageComponentComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AddRecommendationPageComponentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

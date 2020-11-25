@@ -13,9 +13,7 @@ describe('AuthCallbackPageComponent', () => {
       declarations: [ AuthCallbackPageComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(AuthCallbackPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

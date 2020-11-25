@@ -13,9 +13,7 @@ describe('StandardHeaderComponent', () => {
       declarations: [ StandardHeaderComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(StandardHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

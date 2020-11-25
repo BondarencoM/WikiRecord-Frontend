@@ -13,9 +13,7 @@ describe('WikiEntitySelectorComponent', () => {
       declarations: [ WikiEntitySelectorComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(WikiEntitySelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

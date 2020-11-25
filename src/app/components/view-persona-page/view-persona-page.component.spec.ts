@@ -14,9 +14,7 @@ describe('ViewPersonaPageComponent', () => {
       declarations: [ ViewPersonaPageComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ViewPersonaPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

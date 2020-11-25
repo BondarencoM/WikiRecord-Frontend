@@ -11,9 +11,7 @@ describe('InterestShortEntryComponent', () => {
       declarations: [ InterestShortEntryComponent ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(InterestShortEntryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -13,9 +13,7 @@ describe('DiscoverPersonasViewComponent', () => {
       declarations: [ DiscoverPersonasViewComponent ],
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DiscoverPersonasViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
