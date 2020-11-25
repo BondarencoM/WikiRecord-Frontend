@@ -53,7 +53,9 @@ export class AuthService {
   }
 
   startAuthenticationSilently(): void{
-    this.manager.signinSilent().then(this.restorePath);
+    this.manager.signinSilent()
+    .then(this.restorePath)
+    .catch(e => console.log({authenticationError: e}));
   }
 
   completeAuthenticationSilently = () => this.manager.signinSilentCallback()
