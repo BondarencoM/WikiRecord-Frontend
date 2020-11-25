@@ -1,0 +1,19 @@
+<div *ngIf="persona" class="card" style="width: 18rem;" >
+    <img 
+        class="card-img-top person-card-image cursor-pointer" 
+        routerLink="/personas/{{persona.id}}"
+        src="{{persona.getProfileImagePath()}}" 
+        alt="Image of {{persona.name}}"
+    >
+    <div class="card-body">
+        <app-persona-name-button [persona]="persona" class="card-title lead"> </app-persona-name-button>
+
+        <app-interest-short-entry 
+        *ngFor="let recommendation of persona.shortRecommendationsList"
+        [interest]="recommendation.interest"
+        class="card-text cursor-pointer" 
+        routerLink="recommendations/{{recommendation.id}}"
+        > 
+        </app-interest-short-entry>
+    </div>
+</div>

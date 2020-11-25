@@ -1,0 +1,63 @@
+<div *ngIf="recommendation" class="container-fluid">
+
+    <div class="row justify-content-center wrap">
+        <!-- Persona image -->
+        <div class="col-4 text-right "> 
+            <img 
+            class="persona-profile-img"
+            src="{{recommendation.persona.getProfileImagePath()}}" 
+            alt="Image of {{recommendation.persona.name}}">
+        </div>
+    
+        <!-- Heart -->
+        <div class="col-2 col-lg-3 text-center"> 
+            <img src="/assets/img/heart.webp" *ngIf="recommendation.isConfirmed" alt="Heart icon" class="recommendation-heart">
+        </div>
+    
+        <!-- Interest image-->
+        <div class="col-4"> 
+            <img 
+            class="persona-profile-img"
+            src="{{recommendation.interest.getImagePath()}}" 
+            alt="Icon for {{recommendation.interest.name}} {{recommendation.interest.type}}">
+        </div>
+    </div>
+
+    <div class="row justify-content-center recommendation-view">
+        <!-- Persona name -->
+        <div class="col-4 text-right"> 
+            <app-persona-name-button [persona]="recommendation.persona"> </app-persona-name-button>
+        </div>
+    
+        <div class="col-3 text-center">
+            <span *ngIf="!recommendation.isConfirmed">(maybe)</span>
+             recommends
+        </div>
+    
+        <!-- Interest name-->
+        <div class="col-4 text-left"> 
+            {{recommendation.interest.name}}
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-start button-pane mt-3">
+        <a href="{{recommendation.context}}" target="_blank"> {{ recommendation.isConfirmed ? 'Context' : 'Proof' }} </a>
+
+        <strong [ngClass]="{'text-success': recommendation.isConfirmed, 'text-danger':!recommendation.isConfirmed}"> 
+            Certainty {{ recommendation.isConfirmed ? 100 : 0 }} % 
+        </strong>
+
+        <div>
+            <a href="#">⋀ Legitimate </a>
+            <a href="#">⋁ Fake </a>
+        </div>
+        <a href="#">Share</a>
+
+    </div>
+
+</div>
+
+<app-loading-indicator *ngIf="!recommendation" >
+</app-loading-indicator>
+

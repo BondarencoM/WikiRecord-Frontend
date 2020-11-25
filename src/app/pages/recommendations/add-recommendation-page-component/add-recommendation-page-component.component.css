@@ -1,0 +1,12 @@
+.recommendation-heart{
+    width: 15vw;
+    height: 15vw;
+    min-width: 6rem;
+    min-height: 6rem;
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.recommendation-view{
+    font-size: 1.80em;
+}

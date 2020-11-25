@@ -1,0 +1,59 @@
+<div>
+    <div *ngIf="persona" class="row justify-content-center">
+        <div class="col-3">
+            <img src="{{persona.getProfileImagePath()}}" class="w-100" />
+        </div>
+            
+            <div class="col col-md-5 justify-content-left">
+                <h1>{{persona.name}}</h1>
+    
+                <!-- Description and ID -->
+                <span class="text-muted"> {{persona.description}}</span>
+                <a href="https://www.wikidata.org/wiki/{{persona.wikiId}}" class="btn-link text-muted"> {{persona.wikiId}}</a>
+    
+                <!-- Links -->
+                <div class="mb-3">
+                    <a *ngIf="persona.wikipediaUri" href="{{persona.wikipediaUri}}" target="_blank">
+                        <img src="/assets/img/icons/wiki.png" class="img-icon-lg" alt="Wikipedia logo">
+                    </a>
+                </div>
+    
+                <!-- Buttons -->
+                <div>
+                    <div class="btn btn-primary mx-2" (click)="registerButtonClicked()"> Add recommendation </div>
+                    <div class="btn btn-primary mx-2"> Follow </div>
+                </div>
+            </div>
+    </div>
+    
+    <h3 class="mt-5">Recommendations:</h3>
+    <div *ngIf="persona" class="row">
+
+        <!-- Confirmed recommendations -->
+        <div *ngFor="let column of persona.geConfirmedtRecommendationsByType() | keyvalue" class="col p-0 m-0 interest-column"> 
+             <div class="lead column-header p-1"> {{column.key}}s </div>
+             <div class="p-1">
+                <app-interest-short-entry
+                    *ngFor="let recommendation of column.value"
+                    [interest]="recommendation.interest"
+                    routerLink="/recommendations/{{recommendation.id}}"
+                    class="cursor-pointer"
+                    >
+                </app-interest-short-entry>
+             </div>
+        </div>
+
+        <!-- Pending recommendations -->
+        <div class="col p-0">
+            <div class="lead column-header p-1"> Pending </div>
+            <div *ngFor="let recommendation of persona.pendingRecommendations" class="px-1">
+                <app-interest-short-entry
+                [interest]="recommendation.interest"
+                routerLink="/recommendations/{{recommendation.id}}"
+                class="cursor-pointer">
+                </app-interest-short-entry>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div *ngIf="personas.length" class="card-deck d-flex justify-content-center">
+    <app-persona-recommendations-card 
+        *ngFor="let persona of personas" 
+        [persona]="persona"
+        class="d-flex mb-5"
+    > 
+    </app-persona-recommendations-card>
+</div>
+
+<app-loading-indicator *ngIf="!personas.length">
+</app-loading-indicator>

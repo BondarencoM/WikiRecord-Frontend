@@ -1,0 +1,5 @@
+.person-card-image{
+    max-height: 50%;
+    object-fit: cover;
+    object-position: 0 20%;
+}

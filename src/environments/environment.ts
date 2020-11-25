@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  personasServiceURL: 'https://localhost:5002/api/personas',
+  recommendationServiceURL: 'https://localhost:5002/api/recommendations',
+  interestServiceURL: 'https://localhost:5002/api/interests',
+  authenticationAuthority: 'https://localhost:5000',
+
+  hostsRequiringAccessToken: [
+    'https://localhost:5001',
+    'https://localhost:5002',
+  ]
 };
 
 /*

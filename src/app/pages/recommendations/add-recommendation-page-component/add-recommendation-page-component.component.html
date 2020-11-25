@@ -1,0 +1,79 @@
+<h2>Register recommednation</h2>
+
+<div class="row justify-content-center wrap">
+    <!-- Persona image -->
+    <div *ngIf="persona" class="col-4 text-right "> 
+        <img 
+        class="persona-profile-img"
+        src="{{persona.getProfileImagePath()}}" 
+        alt="Image of {{persona.name}}">
+    </div>
+
+    <!-- Heart -->
+    <div *ngIf="persona && interest" class="col-3 text-center "> 
+        <img src="/assets/img/heart.webp" alt="Heart icon" class="recommendation-heart">
+    </div>
+
+    <!-- Interest image-->
+    <div *ngIf="interest" class="col-4"> 
+        <img 
+        class="persona-profile-img"
+        src="{{interest.getImagePath()}}" 
+        alt="Icon for {{interest.name}} {{interest.type}}">
+    </div>
+</div>
+
+<div class="row justify-content-center recommendation-view mb-3">
+    <!-- Persona name -->
+    <div class="col-4 text-right"> 
+        {{persona?.name}}
+    </div>
+
+    <div *ngIf="persona && interest" class="col-3 text-center"> recommends </div>
+
+    <!-- Interest name-->
+    <div *ngIf="interest" class="col-4 text-left"> 
+        {{interest.name}}
+    </div>
+</div>
+
+<!-- Select persona -->
+<app-wiki-entity-selector 
+*ngIf="!persona"
+#PersonaSelectionForm
+[ModelMapper] = "PersonaModelMapper"
+[EntityFilter] = "PersonaEntityFilter"
+(EntitySelected) = "personaSelected($event)"
+title = "Select Persona">
+</app-wiki-entity-selector>
+
+<!-- Select interest-->
+<app-wiki-entity-selector 
+*ngIf="persona && !interest"
+#InterestSelectionForm
+[ModelMapper] = "InterestModelMapper"
+[EntityFilter] = "InterestEntityFilter"
+(EntitySelected) = "interestSelected($event)"
+title = "Select Interest">
+</app-wiki-entity-selector>
+
+<!-- Prof and confirm --> 
+<div *ngIf="persona && interest"  class="row justify-content-center">
+    <div class="col col-lg-6 align-self-center">
+        <form (ngSubmit)="addRecommendation()" #submitForm="ngForm">
+            <div class="form-group">
+                <div class="text-muted"> 
+                    Please enter an url to a credible source for this recommendation.
+                    Best sources are official blog posts, interviews, tweets, Youtube videos etc.
+                </div>
+                <input type="url" required class="form-control" placeholder="Proof"
+                    name="context" id="context" [(ngModel)]="model.context" />
+            </div>
+            <button 
+                type="submit" class="btn btn-primary float-right" 
+                [disabled]="!submitForm.form.valid || !this.model.interestId || !this.model.personaId">
+                    Register    
+            </button>
+        </form>
+    </div>
+</div>
