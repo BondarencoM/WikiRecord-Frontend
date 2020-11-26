@@ -13,7 +13,7 @@ export class RecommendationPageComponent implements OnInit {
 
   private id: number
   public recommendation: Recommendation
-  
+
   public readonly HEART_PATH = Images.FallbackPersonaImage
 
   constructor(
