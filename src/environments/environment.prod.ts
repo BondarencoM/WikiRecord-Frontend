@@ -1,12 +1,14 @@
 export const environment = {
   production: true,
-  personasServiceURL: 'https://localhost:5002/api/personas',
-  recommendationServiceURL: 'https://localhost:5002/api/recommendations',
-  interestServiceURL: 'https://localhost:5002/api/interests',
-  authenticationAuthority: 'https://localhost:5000',
+  personasServiceURL: 'https://recommendation-service.azurewebsites.net/api/personas',
+  recommendationServiceURL: 'https://recommendation-service.azurewebsites.net/api/recommendations',
+  interestServiceURL: 'https://recommendation-service.azurewebsites.net/api/interests',
+  authenticationAuthority: 'https://commendie.azurewebsites.net',
+  baseHref: '/Commendie-Frontend/',
+
 
   hostsRequiringAccessToken: [
-    'https://localhost:5001',
-    'https://localhost:5002',
+    'https://commendie.azurewebsites.net',
+    'https://recommendation-service.azurewebsites.net',
   ]
 };

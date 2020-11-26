@@ -4,22 +4,26 @@ import * as Oidc from 'oidc-client';
 import { environment } from 'src/environments/environment';
 import { AuthenticatedUser } from '../models/AuthenticatedUser';
 
+const BASE_URL = window.origin + environment.baseHref ;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+
+
   private manager = new Oidc.UserManager({
     authority: environment.authenticationAuthority,
     client_id: 'angular-app',
-    redirect_uri: 'http://localhost:4200/auth-callback',
-    post_logout_redirect_uri: window.origin + '/auth-signout-callback',
+    redirect_uri: BASE_URL + 'auth-callback',
+    post_logout_redirect_uri: BASE_URL + 'auth-signout-callback',
     response_type: 'code',
     automaticSilentRenew: true,
     scope: 'openid profile recommendation-service user-profile-service',
     filterProtocolClaims: true,
     loadUserInfo: true,
-    silent_redirect_uri: 'http://localhost:4200/auth-silent-callback',
+    silent_redirect_uri: BASE_URL + 'auth-silent-callback',
 })
 
   UserChanged = new EventEmitter<AuthenticatedUser>()
@@ -41,7 +45,7 @@ export class AuthService {
   }
 
   completeAuthentication = () => {
-    if (window.location.hash){
+    if (window.location.search){
       this.manager.signinRedirectCallback().then(() => this.restorePath())
     }
   }
