@@ -14,7 +14,7 @@ export class RecommendationPageComponent implements OnInit {
   private id: number
   public recommendation: Recommendation
 
-  public readonly HEART_PATH = Images.FallbackPersonaImage
+  public readonly HEART_PATH = Images.RedHeart
 
   constructor(
     private recommendations: RecommendationsService,

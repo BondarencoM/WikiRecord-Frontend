@@ -1,3 +1,4 @@
+import { Images } from 'src/app/utils/Images';
 import { Recommendation } from '../recommendations/Recommendation';
 
 export class Persona{
@@ -24,6 +25,6 @@ export class Persona{
     getProfileImagePath({fallback = '', width = 600} = {}): string{
         return this.imageUri ? this.imageUri + '?width=' + width : ''
                     || fallback
-                    || '/assets/img/fallback-person-image.jpg'
+                    || Images.FallbackPersonaImage
     }
 }
