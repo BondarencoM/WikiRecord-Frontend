@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecommendationsService } from 'src/app/services/recommendations.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Recommendation } from 'src/app/models/recommendations/Recommendation';
+import { Images } from 'src/app/utils/Images';
 
 @Component({
   selector: 'app-recommendation-page',
@@ -12,6 +13,8 @@ export class RecommendationPageComponent implements OnInit {
 
   private id: number
   public recommendation: Recommendation
+  
+  public readonly HEART_PATH = Images.FallbackPersonaImage
 
   constructor(
     private recommendations: RecommendationsService,
