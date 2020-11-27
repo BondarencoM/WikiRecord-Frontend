@@ -15,11 +15,11 @@ import { PersonasService } from 'src/app/services/personas.service';
 import { RecommendationsService } from 'src/app/services/recommendations.service';
 
 @Component({
-  selector: 'app-add-recommendation-page-component',
-  templateUrl: './add-recommendation-page-component.component.html',
-  styleUrls: ['./add-recommendation-page-component.component.css']
+  selector: 'app-add-recommendation-page',
+  templateUrl: './add-recommendation-page.component.html',
+  styleUrls: ['./add-recommendation-page.component.css']
 })
-export class AddRecommendationPageComponentComponent implements OnInit {
+export class AddRecommendationPageComponent implements OnInit {
 
   @ViewChild('PersonaSelectionForm') PersonaSelectionForm: WikiEntitySelectorComponent<WikiPersonVM>
   @ViewChild('InterestSelectionForm') InterestSelectionForm: WikiEntitySelectorComponent<WikiInterestVM>

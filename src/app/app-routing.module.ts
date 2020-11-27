@@ -8,13 +8,13 @@ import { RegistrationCallbackPageComponent } from './pages/registration-callback
 import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-page/auth-silent-callback-page.component';
 import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
 import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
-import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
+import { AddRecommendationPageComponent } from './pages/recommendations/add-recommendation-page/add-recommendation-page.component';
 import { AuthGuardService } from './auth/guards/auth-guard.service';
 import { ViewPersonaPageComponent } from './components/view-persona-page/view-persona-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'recommendations/add', component: AddRecommendationPageComponentComponent, canActivate: [AuthGuardService]},
+  {path: 'recommendations/add', component: AddRecommendationPageComponent, canActivate: [AuthGuardService]},
   {path: 'recommendations/:id', component: RecommendationPageComponent},
   {path: 'auth-callback', component: AuthCallbackPageComponent},
   {path: 'auth-signout-callback', component: AuthSignoutCallbackPageComponent},

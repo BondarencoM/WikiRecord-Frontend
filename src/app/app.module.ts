@@ -20,7 +20,7 @@ import { AuthSilentCallbackPageComponent } from './pages/auth-silent-callback-pa
 import { AddPersonaPageComponent } from './pages/personas/add-persona-page/add-persona-page.component';
 import { FormsModule } from '@angular/forms';
 import { AddInterestPageComponent } from './pages/interests/add-interest-page/add-interest-page.component';
-import { AddRecommendationPageComponentComponent } from './pages/recommendations/add-recommendation-page-component/add-recommendation-page-component.component';
+import { AddRecommendationPageComponent } from './pages/recommendations/add-recommendation-page/add-recommendation-page.component';
 import { WikiEntitySelectorComponent } from './components/wiki-entity-selector/wiki-entity-selector.component';
 import { TokenHttpInterceptor } from './auth/interceptors/TokenHttpInterceptor';
 import { ViewPersonaPageComponent } from './components/view-persona-page/view-persona-page.component';
@@ -43,7 +43,7 @@ import { PersonaNameButtonComponent } from './components/persona-name-button/per
     AuthSilentCallbackPageComponent,
     AddPersonaPageComponent,
     AddInterestPageComponent,
-    AddRecommendationPageComponentComponent,
+    AddRecommendationPageComponent,
     WikiEntitySelectorComponent,
     ViewPersonaPageComponent,
     PersonaNameButtonComponent,
