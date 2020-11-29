@@ -18,7 +18,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run build
       - run: npm run test:ci
       - run: npm run lint
   deploy:
@@ -48,7 +47,7 @@ jobs:
           uses: treosh/lighthouse-ci-action@v3
           with:
             urls: |
-              https://bondarencom.gitub.io/Commendie-Frontend/
+              https://bondarencom.github.io/Commendie-Frontend/
             uploadArtifacts: true # save results as an action artifacts
     
           
