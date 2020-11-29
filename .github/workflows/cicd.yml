@@ -21,7 +21,7 @@ jobs:
       - run: npm run test:ci
       - run: npm run lint
       - name: Create artifacts directory
-        run: mkdir /tmp/lighthouse/artifacts
+        run: mkdir -p /tmp/lighthouse/artifacts
       - name: Run Lighthouse
         uses: foo-software/lighthouse-check-action@master
         with:
