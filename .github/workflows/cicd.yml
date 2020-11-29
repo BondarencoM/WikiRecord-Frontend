@@ -20,6 +20,20 @@ jobs:
       - run: npm ci
       - run: npm run test:ci
       - run: npm run lint
+      - name: Create artifacts directory
+        run: mkdir /tmp/lighthouse/artifacts
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        with:
+          author: ${{ github.actor }}
+          branch: ${{ github.ref }}
+          outputDirectory: /tmp/lighthouse/artifacts
+          urls: '/'
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: Lighthouse reports
+          path: /tmp/lighthouse/artifacts
   deploy:
     needs: [test]
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
