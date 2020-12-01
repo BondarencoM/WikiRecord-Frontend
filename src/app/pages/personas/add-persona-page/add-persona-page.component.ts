@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AddPersonaVM } from 'src/app/models/persona/AddPersonaVM';
 import { WikiPersonVM } from 'src/app/models/persona/WikiPersonVM';
-import { WikiSearchResult } from 'src/app/models/wiki/WikiSearchResult';
+import { IWikiSearchResult } from 'src/app/models/wiki/IWikiSearchResult';
 import { PersonasService } from 'src/app/services/personas.service';
 import { WikibaseService } from 'src/app/services/wikibase.service';
 
@@ -58,7 +58,7 @@ export class AddPersonaPageComponent implements OnInit {
     })
   }
 
-  async AddDetailed(search: string, segment: WikiSearchResult): Promise<void>{
+  async AddDetailed(search: string, segment: IWikiSearchResult): Promise<void>{
 
     if (!segment.search || this.searchStillRelevant(search) === false) {
       return;

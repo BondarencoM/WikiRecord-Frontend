@@ -1,6 +1,6 @@
 import { Identifiable } from '../Identifiable';
 
-export interface WikiSimplifiedEntityVM extends Identifiable{
+export interface IWikiSimplifiedEntityVM extends Identifiable{
     id: string
     labels: {en?: string}
     descriptions: {en?: string}

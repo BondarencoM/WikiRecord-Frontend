@@ -3,8 +3,8 @@ import { Subscription } from 'rxjs';
 import { CreateInterestVM } from 'src/app/models/interest/CreateInterestVM';
 import { Interest } from 'src/app/models/interest/Interest';
 import { WikiInterestVM } from 'src/app/models/interest/WikiInterestVM';
-import { WikiSearchResult } from 'src/app/models/wiki/WikiSearchResult';
-import { WikiSimplifiedEntityVM } from 'src/app/models/wiki/WikiSimplifiedEntityVM';
+import { IWikiSearchResult } from 'src/app/models/wiki/IWikiSearchResult';
+import { IWikiSimplifiedEntityVM } from 'src/app/models/wiki/WikiSimplifiedEntityVM';
 import { InterestsService } from 'src/app/services/interests-service.service';
 import { WikibaseService } from 'src/app/services/wikibase.service';
 
@@ -58,7 +58,7 @@ export class AddInterestPageComponent implements OnInit {
     })
   }
 
-  async AddDetailed(search: string, segment: WikiSearchResult): Promise<void>{
+  async AddDetailed(search: string, segment: IWikiSearchResult): Promise<void>{
     if (this.searchStillRelevant(search) === false) {
       return;
     }

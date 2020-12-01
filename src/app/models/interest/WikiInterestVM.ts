@@ -2,7 +2,7 @@ import { InterestType } from './Interest'
 import WBK from 'wikibase-sdk'
 import { WikiIdentifier } from '../wiki/WikiIdentifier'
 import { WikiProperties } from '../wiki/WikiProperties'
-import { WikiSimplifiedEntityVM } from '../wiki/WikiSimplifiedEntityVM'
+import { IWikiSimplifiedEntityVM } from '../wiki/WikiSimplifiedEntityVM'
 import { Images } from 'src/app/utils/Images'
 
 export class WikiInterestVM{
@@ -23,12 +23,12 @@ export class WikiInterestVM{
         return b.modified.localeCompare(a.modified)
     }
 
-    static InterestEntityFilter(entity: WikiSimplifiedEntityVM): boolean{
+    static InterestEntityFilter(entity: IWikiSimplifiedEntityVM): boolean{
         const type = entity.claims.P31 || ['undefined']
         return Object.keys(AcceptedInterestsTypes).includes(type[0])
     }
 
-    static InterestModelMapper(entity: WikiSimplifiedEntityVM): WikiInterestVM {
+    static InterestModelMapper(entity: IWikiSimplifiedEntityVM): WikiInterestVM {
         return new WikiInterestVM({
           wikiId: entity.id,
           name: entity.labels.en,

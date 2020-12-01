@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { WikiEntity } from '../models/wiki/WikiEntity';
-import { WikiSearchResult } from '../models/wiki/WikiSearchResult';
-import { WikiSimplifiedEntityVM } from '../models/wiki/WikiSimplifiedEntityVM';
+import { IWikiSearchResult } from '../models/wiki/IWikiSearchResult';
+import { IWikiSimplifiedEntityVM } from '../models/wiki/WikiSimplifiedEntityVM';
 import { WikiSdkWrapperService } from './wiki-sdk-wrapper.service';
 
 
@@ -17,13 +17,13 @@ export class WikibaseService {
     private wiki: WikiSdkWrapperService,
     ) { }
 
-  GetSearchResults(searchName: string): Observable<WikiSearchResult>{
-    return new Observable<WikiSearchResult>(
+  GetSearchResults(searchName: string): Observable<IWikiSearchResult>{
+    return new Observable<IWikiSearchResult>(
       subscriber => this.SearchAndPublishSegment(searchName, 0, subscriber)
       );
   }
 
-  private SearchAndPublishSegment(query: string, offset: number, subscriber: Subscriber<WikiSearchResult>): void{
+  private SearchAndPublishSegment(query: string, offset: number, subscriber: Subscriber<IWikiSearchResult>): void{
 
     if (offset > 90 || offset === undefined || offset === null) {
       return subscriber.complete();
@@ -36,7 +36,7 @@ export class WikibaseService {
       continue: offset,
     })
 
-    this.http.get<WikiSearchResult>(searchQquery).subscribe(
+    this.http.get<IWikiSearchResult>(searchQquery).subscribe(
       response => {
         subscriber.next(response)
         this.SearchAndPublishSegment(query, response['search-continue'], subscriber)
@@ -45,7 +45,7 @@ export class WikibaseService {
     )
   }
 
-  async GetEntitiesByIds(...ids: string[]): Promise<WikiSimplifiedEntityVM[]>{
+  async GetEntitiesByIds(...ids: string[]): Promise<IWikiSimplifiedEntityVM[]>{
 
     if (!ids || ids.length === 0) { return Promise.resolve([]) }
 
@@ -57,7 +57,7 @@ export class WikibaseService {
 
     const entitiesResponse = await this.http.get<WikiEntity>(entitiesQuery).toPromise()
 
-    const entities = Object.values<WikiSimplifiedEntityVM>(this.wiki.simplifyEntities(entitiesResponse.entities))
+    const entities = Object.values<IWikiSimplifiedEntityVM>(this.wiki.simplifyEntities(entitiesResponse.entities))
 
     return entities || []
   }

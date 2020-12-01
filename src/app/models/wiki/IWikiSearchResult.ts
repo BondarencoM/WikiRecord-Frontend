@@ -1,4 +1,4 @@
-export interface WikiSearchResult{
+export interface IWikiSearchResult{
     search: {
         id: string
         label: string

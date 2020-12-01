@@ -2,8 +2,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { toArray } from 'rxjs/operators';
 import { expectSuccessWith, expectToFailWithHttpErrorEvent } from 'src/test/utils/utils';
-import { WikiSearchResult } from '../models/wiki/WikiSearchResult';
-import { WikiSimplifiedEntityVM } from '../models/wiki/WikiSimplifiedEntityVM';
+import { IWikiSearchResult } from '../models/wiki/IWikiSearchResult';
+import { IWikiSimplifiedEntityVM } from '../models/wiki/WikiSimplifiedEntityVM';
 import { WikiSdkWrapperService } from './wiki-sdk-wrapper.service';
 import { WikibaseService } from './wikibase.service';
 
@@ -47,7 +47,7 @@ describe('WikibaseService', () => {
         {id: 'Q18032001', label: searchName, description: ''},
         {id: 'Q18032002', label: searchName, description: ''},
       ]
-    } as WikiSearchResult
+    } as IWikiSearchResult
 
     service.GetSearchResults(searchName).subscribe(expectSuccessWith(searchResult))
 
@@ -77,7 +77,7 @@ describe('WikibaseService', () => {
       {search: [], 'search-continue': 40},
       {search: [], 'search-continue': 60},
       {search: [] },
-    ] as WikiSearchResult[]
+    ] as IWikiSearchResult[]
 
     service.GetSearchResults(searchName).pipe(toArray()).subscribe(expectSuccessWith(searchResults))
 
@@ -125,7 +125,7 @@ describe('WikibaseService', () => {
     const finalEnties = [{
       id: 'Q101',
       labels: { en : 'someLabels'},
-    }] as WikiSimplifiedEntityVM[]
+    }] as IWikiSimplifiedEntityVM[]
 
     const getEntitiesSpy = wikiSdkSpy.getManyEntities.and.returnValue(getEntitesUrl)
 

@@ -1,4 +1,4 @@
-import { WikiSimplifiedEntityVM } from '../wiki/WikiSimplifiedEntityVM'
+import { IWikiSimplifiedEntityVM } from '../wiki/WikiSimplifiedEntityVM'
 import WBK from 'wikibase-sdk'
 import { WikiProperties } from '../wiki/WikiProperties'
 import { Images } from 'src/app/utils/Images'
@@ -19,7 +19,7 @@ export class WikiPersonVM{
         return b.modified.localeCompare(a.modified)
     }
 
-    static PersonaModelMapper(entity: WikiSimplifiedEntityVM): WikiPersonVM {
+    static PersonaModelMapper(entity: IWikiSimplifiedEntityVM): WikiPersonVM {
         return new WikiPersonVM({
           wikiId: entity.id,
           name: entity.labels.en,
@@ -29,7 +29,7 @@ export class WikiPersonVM{
         })
       }
 
-    static PersonaEntityFilter = (e: WikiSimplifiedEntityVM) => e.claims.P31  && e.claims.P31[0] === 'Q5'
+    static PersonaEntityFilter = (e: IWikiSimplifiedEntityVM) => e.claims.P31  && e.claims.P31[0] === 'Q5'
 
     getImageUri(width = 600): string{
       return this.images
