@@ -12,6 +12,7 @@ exports.config = {
   specs: [
     './src/**/*.e2e-spec.ts'
   ],
+  SELENIUM_PROMISE_MANAGER: false,
   capabilities: {
     browserName: 'chrome'
   },

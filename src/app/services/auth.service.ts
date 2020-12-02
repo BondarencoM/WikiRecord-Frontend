@@ -1,17 +1,15 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import * as Oidc from 'oidc-client';
-import { environment } from 'src/environments/environment';
-import { AuthenticatedUser } from '../models/AuthenticatedUser';
+import { EventEmitter, Injectable } from '@angular/core'
+import { Router } from '@angular/router'
+import * as Oidc from 'oidc-client'
+import { environment } from 'src/environments/environment'
+import { AuthenticatedUser } from '../models/AuthenticatedUser'
 
-const BASE_URL = window.origin + environment.baseHref ;
+const BASE_URL = window.origin + environment.baseHref
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-
 
   private manager = new Oidc.UserManager({
     authority: environment.authenticationAuthority,
@@ -59,7 +57,7 @@ export class AuthService {
   startAuthenticationSilently(): void{
     this.manager.signinSilent()
     .then(this.restorePath)
-    .catch(e => console.log({authenticationError: e}));
+    .catch(e => console.log({authenticationError: e}))
   }
 
   completeAuthenticationSilently = () => this.manager.signinSilentCallback()
@@ -74,8 +72,8 @@ export class AuthService {
 
   async getAuthenticatedeUser(): Promise<AuthenticatedUser>{
     try{
-      const user = await this.manager.getUser();
-      return new AuthenticatedUser(user);
+      const user = await this.manager.getUser()
+      return new AuthenticatedUser(user)
     }catch (ex){
       console.log({authenticationError: ex})
     }

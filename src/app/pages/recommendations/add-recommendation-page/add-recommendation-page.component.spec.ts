@@ -12,10 +12,10 @@ describe('AddRecommendationPageComponent', () => {
   let component: AddRecommendationPageComponent;
   let fixture: ComponentFixture<AddRecommendationPageComponent>;
 
-  let personasSpy = jasmine.createSpyObj<PersonasService>(['create'] );
-  let interestsSpy = jasmine.createSpyObj<InterestsService>(['create'] );
-  let recommendationSpy = jasmine.createSpyObj<RecommendationsService>(['createAndObserveResponse']);
-  let routerSpy = jasmine.createSpyObj<Router>(['getCurrentNavigation']);
+  const personasSpy = jasmine.createSpyObj<PersonasService>(['create'] );
+  const interestsSpy = jasmine.createSpyObj<InterestsService>(['create'] );
+  const recommendationSpy = jasmine.createSpyObj<RecommendationsService>(['createAndObserveResponse']);
+  const routerSpy = jasmine.createSpyObj<Router>(['getCurrentNavigation']);
 
 
   beforeEach(async () => {

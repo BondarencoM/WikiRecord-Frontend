@@ -58,7 +58,7 @@ export class WikiEntitySelectorComponent<TModel> implements OnInit {
   }
 
   async AddDetailed(search: string, segment: IWikiSearchResult): Promise<void>{
-    
+
     if (!segment.search || this.searchIsOutdated(search)) {
       return;
     }
