@@ -1,21 +1,25 @@
 import { MainPage } from '../pages/mainpage/Mainpage.po'
-import { browser, by, $, element, ExpectedConditions, until } from 'protractor'
+import { by, $, element, ExpectedConditions, browser } from 'protractor'
 import { AddRecommendationPage } from '../pages/add-recommendation/AddRecommendation.po'
 import { LoginPage } from '../pages/LoginPage.po'
 import { ViewRecommendationPage } from '../pages/view-recommendation/ViewRecommendation.po'
 
 describe('A journey to add a recommendation', () => {
-    const mainpage = new MainPage()
-    const recommendations = new AddRecommendationPage()
-    const loginpage = new LoginPage()
-    const commend = new ViewRecommendationPage()
 
+  const mainpage = new MainPage()
+  const recommendations = new AddRecommendationPage()
+  const loginpage = new LoginPage()
+  const commend = new ViewRecommendationPage()
 
-    afterEach(() => {
-    mainpage.expectNoBrowserErrors()
+  beforeEach(async () => {
+    await browser.restart()
   })
 
-    it('support adding a persona, interest and then persona', async () => {
+  afterEach(async () => {
+    await mainpage.expectNoBrowserErrors()
+  })
+
+  it('support adding a persona, interest and then persona', async () => {
     await mainpage.navigateTo()
     await mainpage.addRecommendationButton.click()
 

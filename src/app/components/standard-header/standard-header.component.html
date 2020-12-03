@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg" >
+<nav class="navbar navbar-expand-lg">
     <!-- Logo -->
-    <div class="col-auto col-lg-2 cursor-pointer text-center navbar-brand" aria-selected="false"> 
+    <div class="col-auto col-lg-2 cursor-pointer text-center navbar-brand" aria-selected="false">
         <h4 routerLink="/"> Comendie </h4>
     </div>
 
     <!-- Search bar -->
     <form class="col form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search"  name="search"
-        [ngModel]="search" (ngModelChange)="searchModelChanged()">
+        <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search" name="search"
+            [ngModel]="search" (ngModelChange)="searchModelChanged()">
     </form>
 
     <div class="col-auto btn-group">
@@ -18,30 +18,30 @@
             Add Interest
         </div> -->
         <button routerLink="/recommendations/add" class="btn btn-primary">
-        Add Recommendation
+            Add Recommendation
         </button>
     </div>
 
     <!-- account part -->
-    <div class="col-auto col-lg-2" >
+    <div class="col-auto col-lg-2">
         <!-- if Logged in -->
         <div *ngIf="user?.isLoggedIn(); else navigations">
             <div ngbDropdown class="d-inline-block float_right" placement="bottom-right">
-                <span id="dropdownBasic1" ngbDropdownToggle class="cursor-pointer">
+                <span id="userAccountDropdown" ngbDropdownToggle class="cursor-pointer">
                     {{user.claims.preferred_username}}
                 </span>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                   <button class="dropdown-item" (click)="logoutButtonClicked()" > Log out</button>
+                <div ngbDropdownMenu aria-labelledby="userAccountDropdown">
+                    <button class="dropdown-item" (click)="logoutButtonClicked()"> Log out</button>
                 </div>
-             </div>
+            </div>
         </div>
-            
+
         <!-- If not logged in display Log in and Sign up links-->
         <ng-template #navigations>
             <div class=" login-navigations">
                 <a class="btn btn-link p-0" (click)="loginButtonClicked()"> Log in</a>
-                <span> / </span> 
-                <a class="btn btn-link p-0" (click)="signUpButtonClicked()"> Sign up </a> 
+                <span> / </span>
+                <a class="btn btn-link p-0" (click)="signUpButtonClicked()"> Sign up </a>
             </div>
         </ng-template>
     </div>

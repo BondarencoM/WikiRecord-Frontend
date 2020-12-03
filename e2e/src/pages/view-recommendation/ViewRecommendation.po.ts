@@ -1,4 +1,4 @@
-import { browser, by, element, $, ElementArrayFinder, ElementFinder, logging, ExpectedConditions as Condition, $$, promise, WebElementPromise, until } from 'protractor';
+import { browser, promise, until } from 'protractor';
 import { BasePage } from '../Basepage.po';
 
 export class ViewRecommendationPage extends BasePage {

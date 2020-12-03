@@ -1,4 +1,5 @@
-import { browser, by, element, $, ElementArrayFinder, ElementFinder, logging, ExpectedConditions as Condition, $$, promise, WebElementPromise } from 'protractor';
+import { browser, by, element, $, $$, ElementArrayFinder,
+    ElementFinder, ExpectedConditions as Condition, promise } from 'protractor';
 import { BasePage } from '../Basepage.po';
 
 export class AddRecommendationPage extends BasePage {

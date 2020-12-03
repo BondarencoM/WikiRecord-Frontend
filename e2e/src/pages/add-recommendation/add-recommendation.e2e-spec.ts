@@ -4,8 +4,12 @@ import { AddRecommendationPage } from './AddRecommendation.po'
 describe('Add recommendation page', () => {
   const page = new AddRecommendationPage()
 
+  beforeEach(async () => {
+    await browser.restart()
+  })
+
   afterEach(async () => {
-    page.expectNoBrowserErrors()
+    await page.expectNoBrowserErrors()
   })
 
 

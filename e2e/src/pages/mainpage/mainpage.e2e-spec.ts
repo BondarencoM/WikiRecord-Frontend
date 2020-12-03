@@ -4,8 +4,9 @@ import { browser, by, element } from 'protractor'
 describe('Main page', () => {
   let page: MainPage
 
-  beforeEach(() => {
+  beforeEach(async () => {
     page = new MainPage()
+    await browser.restart()
   })
 
   afterEach(async () => {
