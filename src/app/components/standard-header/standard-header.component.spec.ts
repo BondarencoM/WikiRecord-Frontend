@@ -1,25 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
 
-import { StandardHeaderComponent } from './standard-header.component';
+import { StandardHeaderComponent } from './standard-header.component'
 
 describe('StandardHeaderComponent', () => {
-  let component: StandardHeaderComponent;
-  let fixture: ComponentFixture<StandardHeaderComponent>;
+  let component: StandardHeaderComponent
+  let fixture: ComponentFixture<StandardHeaderComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [ StandardHeaderComponent ]
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      declarations: [StandardHeaderComponent]
     })
-    .compileComponents();
+      .compileComponents()
 
-    fixture = TestBed.createComponent(StandardHeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(StandardHeaderComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
