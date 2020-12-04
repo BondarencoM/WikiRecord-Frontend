@@ -1,5 +1,14 @@
+<div>
+    <div *ngIf="searchresult" class="card-deck d-flex justify-content-center">
+        <app-persona-recommendations-card *ngFor="let persona of searchresult" [persona]="persona" class="d-flex mb-5">
+        </app-persona-recommendations-card>
+    </div>
 
 
-<!-- Discover personas card grid -->
-<app-discover-personas-view>
-</app-discover-personas-view>
+    <div *ngIf="!searchresult">
+        <h1>Popular recommendations:</h1>
+        <!-- Discover personas card grid -->
+        <app-discover-personas-view>
+        </app-discover-personas-view>
+    </div>
+</div>

@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { IWikiSearchResult } from 'src/app/models/wiki/IWikiSearchResult';
-import { IWikiSimplifiedEntityVM } from 'src/app/models/wiki/WikiSimplifiedEntityVM';
-import { WikibaseService } from 'src/app/services/wikibase.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Subscription } from 'rxjs'
+import { IWikiSearchResult } from 'src/app/models/wiki/IWikiSearchResult'
+import { IWikiSimplifiedEntityVM } from 'src/app/models/wiki/WikiSimplifiedEntityVM'
+import { WikibaseService } from 'src/app/services/wikibase.service'
 
 @Component({
   selector: 'app-wiki-entity-selector',
@@ -24,31 +24,31 @@ export class WikiEntitySelectorComponent<TModel> implements OnInit {
 
   constructor(private wiki: WikibaseService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  updateSugestions(): void{
+  updateSugestions(): void {
     this.startLoading()
-    const wordSearch = this.searchQueryModel;
+    const wordSearch = this.searchQueryModel
 
     setTimeout(() => {
-        if (this.searchIsOutdated(wordSearch) === false) {
-          this.populateSuggestions(wordSearch)
-        }
-    }, 300);
+      if (this.searchIsOutdated(wordSearch) === false) {
+        this.populateSuggestions(wordSearch)
+      }
+    }, 300)
   }
 
-  private startLoading(): void{
+  private startLoading(): void {
     this.wikiModel = []
-    this.isLoading = true;
+    this.isLoading = true
   }
 
-  private endLoading = (): void => {this.isLoading = false}
+  private endLoading = (): void => { this.isLoading = false }
 
-  private searchIsOutdated(search: string): boolean{
+  private searchIsOutdated(search: string): boolean {
     return !search || search !== this.searchQueryModel
   }
 
-  private populateSuggestions(searchName: string): void{
+  private populateSuggestions(searchName: string): void {
 
     this.entitiesSubscription = this.wiki.GetSearchResults(searchName).subscribe({
       next: async (segment) => await this.AddDetailed(searchName, segment),
@@ -57,33 +57,33 @@ export class WikiEntitySelectorComponent<TModel> implements OnInit {
     })
   }
 
-  async AddDetailed(search: string, segment: IWikiSearchResult): Promise<void>{
+  async AddDetailed(search: string, segment: IWikiSearchResult): Promise<void> {
 
     if (!segment.search || this.searchIsOutdated(search)) {
-      return;
+      return
     }
 
-    if (this.wikiModel.length > 25 ) {
+    if (this.wikiModel.length > 25) {
       this.entitiesSubscription.unsubscribe()
     }
 
     const ids = segment.search.map(entity => entity.id)
     const entities = await this.wiki.GetEntitiesByIds(...ids)
     if (!entities || this.searchIsOutdated(search)) {
-      return;
+      return
     }
     const newElements = entities
-            .filter(this.EntityFilter)
-            .map(this.ModelMapper)
-           // .sort(WikiPersonVM.OrderByModifiedDateDesc)
+      .filter(this.EntityFilter)
+      .map(this.ModelMapper)
+    // .sort(WikiPersonVM.OrderByModifiedDateDesc)
     this.wikiModel.push(...newElements)
 
-    if (this.wikiModel.length > 25 ) {
+    if (this.wikiModel.length > 25) {
       this.entitiesSubscription.unsubscribe()
     }
   }
 
-  selectEntity(persona: TModel): void{
+  selectEntity(persona: TModel): void {
     this.EntitySelected.emit(persona)
   }
 
