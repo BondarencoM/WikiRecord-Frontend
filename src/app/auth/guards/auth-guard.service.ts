@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor(
+  constructor (
     private auth: AuthService,
   ) { }
   async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {

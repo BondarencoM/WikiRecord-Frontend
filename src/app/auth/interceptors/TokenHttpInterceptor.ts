@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class TokenHttpInterceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthService) {}
+  constructor (private auth: AuthService) {}
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

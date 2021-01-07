@@ -11,7 +11,7 @@ export class PersonaWithInterests{
     wikipediaUri: string
     recommendations: Recommendation[] = []
 
-    constructor(init?: Partial<PersonaWithInterests>){
+    constructor (init?: Partial<PersonaWithInterests>){
         Object.assign(this, init)
     }
 

@@ -15,7 +15,7 @@ export class StandardHeaderComponent implements OnInit {
 
   public user: AuthenticatedUser
 
-  constructor(
+  constructor (
     private authService: AuthService,
     private personas: PersonasService,
   ) { }

@@ -12,7 +12,7 @@ const BASE_URL = environment.recommendationServiceURL;
 })
 export class RecommendationsService {
 
-  constructor(private http: HttpClient) { }
+  constructor (private http: HttpClient) { }
 
   getById(id: number): Observable<Recommendation>{
     return this.http.get<Recommendation>(BASE_URL + '/' + id)

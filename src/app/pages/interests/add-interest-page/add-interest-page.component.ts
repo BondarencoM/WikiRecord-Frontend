@@ -21,7 +21,7 @@ export class AddInterestPageComponent implements OnInit {
   isLoading = false
   interestSubscription: Subscription
 
-  constructor(
+  constructor (
     private wiki: WikibaseService,
     private service: InterestsService
   ) { }

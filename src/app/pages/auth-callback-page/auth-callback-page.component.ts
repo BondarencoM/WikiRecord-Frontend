@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthCallbackPageComponent implements OnInit {
 
-  constructor(
+  constructor (
     private authService: AuthService,
     private router: Router
     ) { }

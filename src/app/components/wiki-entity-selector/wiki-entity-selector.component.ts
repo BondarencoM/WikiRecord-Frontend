@@ -22,7 +22,7 @@ export class WikiEntitySelectorComponent<TModel> implements OnInit {
 
   @Output() EntitySelected = new EventEmitter<TModel>()
 
-  constructor(private wiki: WikibaseService) { }
+  constructor (private wiki: WikibaseService) { }
 
   ngOnInit(): void { }
 

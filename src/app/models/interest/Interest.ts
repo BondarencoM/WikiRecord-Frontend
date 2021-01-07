@@ -6,7 +6,7 @@ export class Interest{
     wikiId: string
     imageUri: string
 
-    constructor(init?: Partial<Interest>){
+    constructor (init?: Partial<Interest>){
         Object.assign(this, init)
     }
 

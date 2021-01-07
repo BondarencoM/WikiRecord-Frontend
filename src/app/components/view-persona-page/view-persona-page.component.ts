@@ -11,7 +11,7 @@ import { PersonasService } from 'src/app/services/personas.service';
 })
 export class ViewPersonaPageComponent implements OnInit {
 
-  constructor(
+  constructor (
     private personaService: PersonasService,
     private route: ActivatedRoute,
     private router: Router,

@@ -73,7 +73,7 @@
       "options": {
         "anonymous": "never",
         "asyncArrow": "always",
-        "constructor": "never",
+        "constructor": "always",
         "method": "never",
         "named": "never"
       }

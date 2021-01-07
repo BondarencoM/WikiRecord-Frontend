@@ -5,7 +5,7 @@ import { Images } from 'src/app/utils/Images'
 
 export class WikiPersonVM{
 
-    constructor(init?: Partial<WikiPersonVM>){
+    constructor (init?: Partial<WikiPersonVM>){
         Object.assign(this, init)
     }
 

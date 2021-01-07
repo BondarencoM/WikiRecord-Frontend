@@ -26,7 +26,7 @@ export class AuthService {
 
   UserChanged = new EventEmitter<AuthenticatedUser>()
 
-  constructor(private router: Router) {
+  constructor (private router: Router) {
     if (!environment.production) { Oidc.Log.logger = console }
 
     this.manager.events.addUserLoaded( u => this.notifyUserChanged(u))

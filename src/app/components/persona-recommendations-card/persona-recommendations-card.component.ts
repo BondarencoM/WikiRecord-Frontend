@@ -11,7 +11,7 @@ export class PersonaRecommendationsCardComponent implements OnInit {
 
   @Input() persona: PersonaWithInterests;
 
-  constructor() { }
+  constructor () { }
 
   ngOnInit(): void {
   }

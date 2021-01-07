@@ -17,7 +17,7 @@ export class PersonasService {
   private searchResults = new Subject<PersonaWithInterests[]>()
   public searchObserver = this.searchResults.asObservable()
 
-  constructor(private http: HttpClient) { }
+  constructor (private http: HttpClient) { }
 
   find(id: number): Observable<PersonaWithInterests> {
     return this.http.get<PersonaWithInterests>(`${URL}/${id}/recommendations`)

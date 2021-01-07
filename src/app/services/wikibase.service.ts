@@ -12,7 +12,7 @@ import { WikiSdkWrapperService } from './wiki-sdk-wrapper.service';
 })
 export class WikibaseService {
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private wiki: WikiSdkWrapperService,
     ) { }

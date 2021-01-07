@@ -7,7 +7,7 @@ import { Images } from 'src/app/utils/Images'
 
 export class WikiInterestVM{
 
-    constructor(init?: Partial<WikiInterestVM>){
+    constructor (init?: Partial<WikiInterestVM>){
         Object.assign(this, init)
     }
 

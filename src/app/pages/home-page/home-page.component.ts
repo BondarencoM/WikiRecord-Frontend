@@ -11,7 +11,7 @@ export class HomePageComponent implements OnInit {
 
   searchresult: PersonaWithInterests[]
 
-  constructor(
+  constructor (
     private personas: PersonasService,
   ) { }
 

@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthSilentCallbackPageComponent implements OnInit {
 
-  constructor( private auth: AuthService) { }
+  constructor ( private auth: AuthService) { }
 
   ngOnInit(): void {
     this.auth.completeAuthenticationSilently()

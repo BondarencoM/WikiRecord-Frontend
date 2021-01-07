@@ -2,7 +2,7 @@ import { Profile, User } from 'oidc-client'
 
 export class AuthenticatedUser{
 
-    constructor(private user: User){}
+    constructor (private user: User){}
 
     get claims(): Profile {
       return this.user.profile || null

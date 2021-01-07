@@ -12,7 +12,7 @@ export class InterestsService {
 
   baseUrl = environment.interestServiceURL
 
-  constructor(private http: HttpClient) { }
+  constructor (private http: HttpClient) { }
 
   create(interest: CreateInterestVM): Observable<Interest>{
     return this.http.post<Interest>(this.baseUrl, interest)

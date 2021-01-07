@@ -18,7 +18,7 @@ export class AddPersonaPageComponent implements OnInit {
   isLoading = false
   personaSubscription: Subscription
 
-  constructor(
+  constructor (
     private personasService: PersonasService,
     private wiki: WikibaseService,
     ) { }

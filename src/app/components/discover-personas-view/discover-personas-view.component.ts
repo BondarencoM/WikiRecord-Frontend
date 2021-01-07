@@ -9,7 +9,7 @@ import { PersonasService } from 'src/app/services/personas.service';
 })
 export class DiscoverPersonasViewComponent implements OnInit {
 
-  constructor(private personasService: PersonasService) { }
+  constructor (private personasService: PersonasService) { }
 
   personas: PersonaWithInterests[] = []
 
