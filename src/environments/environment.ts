@@ -7,6 +7,7 @@ export const environment = {
   personasServiceURL: 'https://localhost:5002/api/personas',
   recommendationServiceURL: 'https://localhost:5002/api/recommendations',
   interestServiceURL: 'https://localhost:5002/api/interests',
+  commentServiceURL: 'https://localhost:5003/api/comments',
   authenticationAuthority: 'https://localhost:5000',
   baseHref: '/',
 

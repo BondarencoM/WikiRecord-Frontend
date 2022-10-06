@@ -1,0 +1,10 @@
+<form action="javascript:void(0)" (submit)="submit()">
+    <div class="form-group d-flex flex-column">
+        <textarea type="text" class="form-control" name="comment" placeholder="Leave a comment" rows=5 [(ngModel)]="text"></textarea>
+        <input type="submit" class="btn btn-primary justify-content-end" value="Submit" >
+    </div>
+</form>
+
+<div class="form-group d-flex flex-column">
+    {{domain}}
+</div>

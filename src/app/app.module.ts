@@ -25,6 +25,7 @@ import { WikiEntitySelectorComponent } from './components/wiki-entity-selector/w
 import { TokenHttpInterceptor } from './auth/interceptors/TokenHttpInterceptor';
 import { ViewPersonaPageComponent } from './components/view-persona-page/view-persona-page.component';
 import { PersonaNameButtonComponent } from './components/persona-name-button/persona-name-button.component';
+import { CommentSectionComponent } from './components/comment-section/comment-section.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { PersonaNameButtonComponent } from './components/persona-name-button/per
     WikiEntitySelectorComponent,
     ViewPersonaPageComponent,
     PersonaNameButtonComponent,
+    CommentSectionComponent,
   ],
   imports: [
     BrowserModule,
