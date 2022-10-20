@@ -3,11 +3,11 @@ import { AddCommentVM } from 'src/app/models/comment/AddCommentVM'
 import { CommentService } from 'src/app/services/comment-service.service'
 
 @Component({
-  selector: 'app-comment-section',
-  templateUrl: './comment-section.component.html',
-  styleUrls: ['./comment-section.component.css']
+  selector: 'app-comment-box',
+  templateUrl: './comment-box.component.html',
+  styleUrls: ['./comment-box.component.css']
 })
-export class CommentSectionComponent implements OnInit {
+export class CommentBoxComponent implements OnInit {
   @Input() domain: string
 
   @Input() entityId: string

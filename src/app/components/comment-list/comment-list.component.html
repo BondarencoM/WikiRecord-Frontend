@@ -1,0 +1,14 @@
+<div *ngIf="comments.length" class="d-flex flex-column">
+    <app-comment 
+        *ngFor="let comment of comments" 
+        [comment]="comment"
+    > 
+    </app-comment>
+
+    <div *ngIf="moreAvailable" class="btn btn-outline-primary mb-5 align-self-center" (click)="onShowMore()">
+        Load more
+    </div>
+</div>
+
+<app-loading-indicator *ngIf="!comments.length">
+</app-loading-indicator>

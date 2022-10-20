@@ -3,7 +3,7 @@ export class Comment {
     text: string
     domain: string
     entityId: string
-    creationDate: Date
+    createdAt: Date
     username: string
 
     constructor (init?: Partial<Comment>){

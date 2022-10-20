@@ -18,7 +18,7 @@ export class AuthService {
     post_logout_redirect_uri: BASE_URL + 'auth-signout-callback',
     response_type: 'code',
     automaticSilentRenew: true,
-    scope: 'openid profile recommendation-service user-profile-service',
+    scope: 'openid profile recommendation-service user-profile-service comment-service',
     filterProtocolClaims: true,
     loadUserInfo: true,
     silent_redirect_uri: BASE_URL + 'auth-silent-callback',

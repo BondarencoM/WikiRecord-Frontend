@@ -1,0 +1,18 @@
+<div class="comment-wrapper d-flex">
+    <div class="d-flex flex-column justify-content-end">
+        <button class="btn px-0 pb-0 font-weight-bold"> ⋀ </button>
+        <button class="btn px-0 pt-0 font-weight-bold"> ⋁ </button>
+    </div>
+
+    <div class="d-flex flex-column ml-2">
+        <div class="comment-message ">
+            <pre class="m-0">{{comment.text?.trim()}}</pre>
+        </div>
+    
+        <div class="mt-auto comment-footer">
+            <span class="username font-weight-bold">{{comment.username || 'Annonymous'}} </span>
+            <span class="text-muted">{{comment.createdAt|date:'short'}} </span>
+            <button class="btn font-weight-bold py-0">Reply</button>
+        </div>
+    </div>
+</div>

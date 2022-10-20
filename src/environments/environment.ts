@@ -14,6 +14,7 @@ export const environment = {
   hostsRequiringAccessToken: [
     'https://localhost:5001',
     'https://localhost:5002',
+    'https://localhost:5003',
   ]
 };
 
