@@ -14,12 +14,12 @@ export class CommentBoxComponent implements OnInit {
 
   text = ''
 
-  constructor(private commentService: CommentService) { }
+  constructor (private commentService: CommentService) { }
 
   ngOnInit(): void {
   }
 
-  async submit() {
+  async submit(): Promise<void> {
     console.log(this.text)
 
     await this.commentService.create(new AddCommentVM({
@@ -28,7 +28,7 @@ export class CommentBoxComponent implements OnInit {
       text: this.text,
     })).toPromise()
 
-    this.text = ""
+    this.text = ''
   }
 
 }

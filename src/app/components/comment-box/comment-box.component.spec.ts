@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommentBoxComponent } from './comment-box.component';
@@ -8,6 +9,7 @@ describe('CommentSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       declarations: [ CommentBoxComponent ]
     })
     .compileComponents();

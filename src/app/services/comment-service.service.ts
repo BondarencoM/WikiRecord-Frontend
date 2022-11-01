@@ -11,10 +11,9 @@ const URL = environment.commentServiceURL
   providedIn: 'root'
 })
 export class CommentService {
-
   constructor (private http: HttpClient) { }
 
-  public create(model: AddCommentVM) : Observable<Comment> {
+  public create(model: AddCommentVM): Observable<Comment> {
     return this.http.post<Comment>(URL, model)
   }
 

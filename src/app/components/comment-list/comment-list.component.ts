@@ -18,10 +18,10 @@ export class CommentListComponent implements OnInit {
 
   @Input() entityId: string
 
-  comments : Comment[] = []
+  comments: Comment[] = []
   moreAvailable = true
 
-  constructor(private commentService: CommentService) { }
+  constructor (private commentService: CommentService) { }
 
   private get commentUrl(): string {
     return environment[this.domain + 'ServiceURL']
@@ -31,7 +31,7 @@ export class CommentListComponent implements OnInit {
     this.commentService.get(this.commentUrl, this.entityId, COMMENT_BATCH).subscribe({
       next: c => {
         this.comments = c
-        this.moreAvailable = c.length >= COMMENT_BATCH 
+        this.moreAvailable = c.length >= COMMENT_BATCH
       }
     })
   }

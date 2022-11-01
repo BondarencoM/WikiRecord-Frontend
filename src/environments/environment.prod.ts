@@ -3,8 +3,9 @@ export const environment = {
   personasServiceURL: 'https://recommendation-service.azurewebsites.net/api/personas',
   recommendationServiceURL: 'https://recommendation-service.azurewebsites.net/api/recommendations',
   interestServiceURL: 'https://recommendation-service.azurewebsites.net/api/interests',
+  commentServiceURL: 'https://comment-service.azurewebsites.net/api/comments',
   authenticationAuthority: 'https://commendie.azurewebsites.net',
-  baseHref: '/Commendie-Frontend/',
+  baseHref: '/WikiRecord-Frontend/',
 
 
   hostsRequiringAccessToken: [
