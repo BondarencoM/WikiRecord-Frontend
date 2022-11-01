@@ -9,9 +9,9 @@
     "test:ci": "ng test --browsers=ChromeHeadless --watch=false --code-coverage --source-map=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng deploy --no-silent --base-href=https://bondarencom.github.io/Commendie-Frontend/"
+    "deploy": "ng deploy --no-silent --base-href=https://bondarencom.github.io/WikiRecord-Frontend/"
   },
-  "homepage": "https://bondarencom.github.io/Commendie-Frontend/",
+  "homepage": "https://bondarencom.github.io/WikiRecord-Frontend/",
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.1",
