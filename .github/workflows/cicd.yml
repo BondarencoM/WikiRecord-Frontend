@@ -47,7 +47,7 @@ jobs:
           uses: treosh/lighthouse-ci-action@v3
           with:
             urls: |
-              https://bondarencom.github.io/Commendie-Frontend/
+              https://bondarencom.github.io/WikiRecord-Frontend/
             uploadArtifacts: true # save results as an action artifacts
     
           
