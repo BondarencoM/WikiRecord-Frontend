@@ -21,7 +21,7 @@ export class CommentService {
     return this.http.get<Comment[]>(`${api}/${id}/comments?limit=${limit}&skip=${skip}`)
   }
 
-  public delete(id: number) : Promise<void> {
+  public delete(id: number): Promise<void> {
     return this.http.delete<void>(URL + '/' + id).toPromise()
   }
 }

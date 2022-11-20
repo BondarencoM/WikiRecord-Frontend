@@ -16,7 +16,7 @@ export class CommentBoxComponent implements OnInit {
   text = ''
 
   disabled = false
-  errorMessage : string | null = null
+  errorMessage: string | null = null
 
   constructor (private commentService: CommentService) { }
 
@@ -28,7 +28,7 @@ export class CommentBoxComponent implements OnInit {
 
     try {
 
-      let comment = new AddCommentVM({
+      const comment = new AddCommentVM({
         domain: this.domain,
         entityId: this.entityId,
         text: this.text,
@@ -38,15 +38,15 @@ export class CommentBoxComponent implements OnInit {
     } catch (e) {
       console.log(e)
       if (e instanceof HttpErrorResponse) {
-        if (e.status === 429) this.errorMessage = "You have posted too many comments."
-        else this.errorMessage = "Soething went wrong. Try again later."
+        if (e.status === 429) { this.errorMessage = 'You have posted too many comments.' }
+        else { this.errorMessage = 'Soething went wrong. Try again later.' }
       }
       else { throw e }
     }
     finally {
       this.disabled = false
     }
-    
+
     this.text = ''
   }
 

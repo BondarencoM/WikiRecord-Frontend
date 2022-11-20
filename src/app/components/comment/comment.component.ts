@@ -16,7 +16,7 @@ export class CommentComponent implements OnInit {
 
   disabled = false
   deleted = false
-  errorMessage : string | null = null
+  errorMessage: string | null = null
   user: AuthenticatedUser
 
   constructor (
@@ -42,8 +42,8 @@ export class CommentComponent implements OnInit {
     catch (e) {
       if (e instanceof HttpErrorResponse) {
         console.log(e)
-        if (e.status === 404) this.errorMessage = "Could not confirm deletion. Please try again later."
-        if (e.status === 403) this.errorMessage = "You can't delete this."
+        if (e.status === 404) { this.errorMessage = 'Could not confirm deletion. Please try again later.' }
+        if (e.status === 403) { this.errorMessage = 'You can\'t delete this.' }
         console.log(this.errorMessage)
       } else {
         this.disabled = false
