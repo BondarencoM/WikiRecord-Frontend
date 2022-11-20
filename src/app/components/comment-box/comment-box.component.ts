@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http'
 import { Component, OnInit, Input } from '@angular/core';
 import { AddCommentVM } from 'src/app/models/comment/AddCommentVM'
 import { CommentService } from 'src/app/services/comment-service.service'
@@ -14,20 +15,38 @@ export class CommentBoxComponent implements OnInit {
 
   text = ''
 
+  disabled = false
+  errorMessage : string | null = null
+
   constructor (private commentService: CommentService) { }
 
   ngOnInit(): void {
   }
 
   async submit(): Promise<void> {
-    console.log(this.text)
+    this.disabled = true
 
-    await this.commentService.create(new AddCommentVM({
-      domain: this.domain,
-      entityId: this.entityId,
-      text: this.text,
-    })).toPromise()
+    try {
 
+      let comment = new AddCommentVM({
+        domain: this.domain,
+        entityId: this.entityId,
+        text: this.text,
+      })
+      await this.commentService.create(comment).toPromise()
+
+    } catch (e) {
+      console.log(e)
+      if (e instanceof HttpErrorResponse) {
+        if (e.status === 429) this.errorMessage = "You have posted too many comments."
+        else this.errorMessage = "Soething went wrong. Try again later."
+      }
+      else { throw e }
+    }
+    finally {
+      this.disabled = false
+    }
+    
     this.text = ''
   }
 

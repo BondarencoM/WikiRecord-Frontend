@@ -28,7 +28,7 @@ export class CommentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.commentService.get(this.commentUrl, this.entityId, COMMENT_BATCH).subscribe({
+    this.commentService.getPage(this.commentUrl, this.entityId, COMMENT_BATCH).subscribe({
       next: c => {
         this.comments = c
         this.moreAvailable = c.length >= COMMENT_BATCH
@@ -37,7 +37,7 @@ export class CommentListComponent implements OnInit {
   }
 
   onShowMore(): void {
-    this.commentService.get(this.commentUrl, this.entityId, COMMENT_BATCH, this.comments?.length || 0).subscribe({
+    this.commentService.getPage(this.commentUrl, this.entityId, COMMENT_BATCH, this.comments?.length || 0).subscribe({
       next: c => {
         this.comments.push(...c)
         this.moreAvailable = c.length >= COMMENT_BATCH

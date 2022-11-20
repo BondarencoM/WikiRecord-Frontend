@@ -17,7 +17,11 @@ export class CommentService {
     return this.http.post<Comment>(URL, model)
   }
 
-  public get(api: string, id: string, limit = 10, skip = 0): Observable<Comment[]>  {
+  public getPage(api: string, id: string, limit = 10, skip = 0): Observable<Comment[]>  {
     return this.http.get<Comment[]>(`${api}/${id}/comments?limit=${limit}&skip=${skip}`)
+  }
+
+  public delete(id: number) : Promise<void> {
+    return this.http.delete<void>(URL + '/' + id).toPromise()
   }
 }

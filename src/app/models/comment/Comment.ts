@@ -1,5 +1,6 @@
 export class Comment {
 
+    id: number
     text: string
     domain: string
     entityId: string

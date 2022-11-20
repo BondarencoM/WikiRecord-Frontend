@@ -1,6 +1,13 @@
 <form action="javascript:void(0)" (submit)="submit()">
     <div class="form-group d-flex flex-column">
-        <textarea type="text" class="form-control" name="comment" placeholder="Leave a comment" rows=5 [(ngModel)]="text"></textarea>
-        <input type="submit" class="btn btn-primary justify-content-end" value="Submit" >
+        <div class="alert alert-danger" *ngIf="errorMessage">
+            {{errorMessage}}
+        </div>
+        <textarea 
+            type="text" class="form-control" name="comment" placeholder="Leave a comment" rows=5
+            [(ngModel)]="text"></textarea>
+        <input 
+            type="submit" class="btn btn-primary justify-content-end" value="Submit"
+            [disabled]="disabled" [disabled]="disabled">
     </div>
 </form>
