@@ -22,12 +22,12 @@ jobs:
       - run: npm run lint
       - name: NPM Audit for vulnerabilities
         uses: oke-py/npm-audit-action@v2
-          with:
-            audit_level: moderate
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            issue_assignees: oke-py
-            issue_labels: vulnerability,test
-            dedupe_issues: true
+        with:
+          audit_level: moderate
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_assignees: oke-py
+          issue_labels: vulnerability,test
+          dedupe_issues: true
   deploy:
     needs: [test]
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
