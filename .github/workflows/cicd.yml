@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run test:ci
+      # - run: npm run test:ci
       # - run: npm run lint
       - name: NPM Audit for vulnerabilities
         uses: oke-py/npm-audit-action@v2
@@ -26,7 +26,7 @@ jobs:
           audit_level: moderate
           github_token: ${{ secrets.GITHUB_TOKEN }}
           issue_assignees: oke-py
-          
+
           issue_labels: vulnerability,test
           dedupe_issues: true
   deploy:
