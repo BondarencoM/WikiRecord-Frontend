@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [18.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -20,6 +20,14 @@ jobs:
       - run: npm ci
       - run: npm run test:ci
       - run: npm run lint
+      - name: NPM Audit for vulnerabilities
+        uses: oke-py/npm-audit-action@v2
+          with:
+            audit_level: moderate
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            issue_assignees: oke-py
+            issue_labels: vulnerability,test
+            dedupe_issues: true
   deploy:
     needs: [test]
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -29,7 +37,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 18.x
       - run: npm ci
       - run: git config --global user.email "bondarenco.mihail@gmail.com"
       - run: git config --global user.name "${{github.actor}}"
