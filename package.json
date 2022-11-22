@@ -9,12 +9,12 @@
     "test:ci": "ng test --browsers=ChromeHeadless --watch=false --code-coverage --source-map=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng deploy --no-silent --base-href=https://bondarencom.github.io/WikiRecord-Frontend/"
+    "deploy": "ng deploy --no-silent --repo=https://github.com/BondarencoM/WikiRecord-Frontend.git --base-href=https://bondarencom.github.io/WikiRecord-Frontend/"
   },
   "homepage": "https://bondarencom.github.io/WikiRecord-Frontend/",
   "private": true,
   "dependencies": {
-    "@angular-devkit/architect": "^0.1500.0",
+    "@angular-devkit/schematics": "^15.0.0",
     "@angular-eslint/builder": "^15.0.0",
     "@angular/animations": "^15.0.0",
     "@angular/common": "^15.0.0",
@@ -42,7 +42,7 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
-    "angular-cli-ghpages": "^1.0.0-rc.1",
+    "angular-cli-ghpages": "^1.0.4",
     "codelyzer": "^0.0.28",
     "eslint": "^8.28.0",
     "jasmine-core": "~3.6.0",
