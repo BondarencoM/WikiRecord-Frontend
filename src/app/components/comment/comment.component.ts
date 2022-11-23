@@ -16,6 +16,8 @@ export class CommentComponent implements OnInit {
 
   disabled = false
   deleted = false
+  editing = false
+
   errorMessage: string | null = null
   user: AuthenticatedUser
 
@@ -42,7 +44,30 @@ export class CommentComponent implements OnInit {
     catch (e) {
       if (e instanceof HttpErrorResponse) {
         console.log(e)
-        if (e.status === 404) { this.errorMessage = 'Could not confirm deletion. Please try again later.' }
+        if (e.status === 404) { this.errorMessage = 'Could not confirm deletion. Please refresh the page and try again later.' }
+        if (e.status === 403) { this.errorMessage = 'You can\'t delete this.' }
+        console.log(this.errorMessage)
+      } else {
+        this.disabled = false
+      }
+    }
+  }
+
+  async startEditing(): Promise<void> {
+    this.editing = !this.editing
+  }
+
+  async SubmitEdit(): Promise<void> {
+    try {
+      this.disabled = true
+      await this.service.edit(this.comment)
+      this.disabled = false
+      this.editing = false
+    }
+    catch (e) {
+      if (e instanceof HttpErrorResponse) {
+        console.log(e)
+        if (e.status === 404) { this.errorMessage = 'Could not find the comment. Please refresh the page and try again later.' }
         if (e.status === 403) { this.errorMessage = 'You can\'t delete this.' }
         console.log(this.errorMessage)
       } else {

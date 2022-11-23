@@ -9,7 +9,7 @@ export const environment = {
   interestServiceURL: 'https://localhost:5002/api/interests',
   commentServiceURL: 'https://localhost:5003/api/comments',
   authenticationAuthority: 'https://localhost:5000',
-  baseHref: '/',
+  baseHref: '/WikiRecord-Frontend/',
 
   hostsRequiringAccessToken: [
     'https://localhost:5001',

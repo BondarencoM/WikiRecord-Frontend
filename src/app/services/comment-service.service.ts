@@ -24,4 +24,8 @@ export class CommentService {
   public delete(id: number): Promise<void> {
     return this.http.delete<void>(URL + '/' + id).toPromise()
   }
+
+  public edit(comment: Comment): Promise<void> {
+    return this.http.put<void>(URL + '/' + comment.id, comment).toPromise()
+  }
 }

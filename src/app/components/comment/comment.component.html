@@ -9,7 +9,17 @@
             {{errorMessage}}
         </div>
         <div class="comment-message">
-            <pre class="m-0">{{comment.text?.trim()}}</pre>
+            <pre *ngIf="!editing" class="m-0">{{comment.text?.trim()}}</pre>
+            <form *ngIf="editing" action="javascript:void(0)" (submit)="SubmitEdit()">
+                <div class="form-group d-flex flex-column">
+                    <textarea 
+                        type="text" class="form-control" name="comment" placeholder="Leave a comment" rows=5
+                        [(ngModel)]="comment.text"></textarea>
+                    <input 
+                        type="submit" class="btn btn-primary justify-content-end" value="Submit"
+                        [disabled]="disabled" [disabled]="disabled">
+                </div>
+            </form>
         </div>
     
         <div class="mt-auto comment-footer">
@@ -22,6 +32,14 @@
                 [disabled]="disabled"
                 (click)="removeComment()">
                 Remove
+            </button>
+
+            <button 
+                *ngIf="canEdit()"
+                class="btn text-secondary font-weight-bold py-0" 
+                [disabled]="disabled"
+                (click)="startEditing()">
+                Edit
             </button>
         </div>
     </div>
