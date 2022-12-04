@@ -8,6 +8,7 @@ export class Recommendation{
     interest: Interest
     context: string
     isConfirmed: boolean
+    addedBy: string
 
     static AttachMethods(input: Recommendation): Recommendation {
         const result = Object.assign(new Recommendation(), input)

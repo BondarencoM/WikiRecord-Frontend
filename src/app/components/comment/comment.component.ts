@@ -4,6 +4,7 @@ import { AuthenticatedUser } from 'src/app/models/AuthenticatedUser'
 import { Comment } from 'src/app/models/comment/Comment'
 import { AuthService } from 'src/app/services/auth.service'
 import { CommentService } from 'src/app/services/comment-service.service'
+import { Entities } from 'src/app/utils/Entities'
 
 @Component({
   selector: 'app-comment',
@@ -13,6 +14,7 @@ import { CommentService } from 'src/app/services/comment-service.service'
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment
+  @Input() showViewButton = false
 
   disabled = false
   deleted = false
@@ -32,7 +34,13 @@ export class CommentComponent implements OnInit {
   }
 
   canEdit(): boolean {
-    return this.user?.isLoggedIn() && this.user.claims.name === this.comment.username
+    return this.user?.isLoggedIn()
+      && this.user.claims.name === this.comment.username
+      && !this.comment.isDeleted
+  }
+
+  getUrl (comment: Comment) : string {
+    return Entities[comment.domain]?.internalUrl + comment.entityId
   }
 
   async removeComment(): Promise<void> {

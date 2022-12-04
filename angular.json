@@ -11,6 +11,7 @@
       "prefix": "app",
       "architect": {
         "build": {
+          "defaultConfiguration": "development",
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/Comendie-Frontend",
@@ -57,6 +58,10 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": false
             }
           }
         },
@@ -68,6 +73,8 @@
           "configurations": {
             "production": {
               "browserTarget": "Comendie-Frontend:build:production"
+            },
+            "development": {
             }
           }
         },

@@ -28,6 +28,7 @@ import { PersonaNameButtonComponent } from './components/persona-name-button/per
 import { CommentBoxComponent } from './components/comment-box/comment-box.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { CommentComponent } from './components/comment/comment.component';
     CommentBoxComponent,
     CommentListComponent,
     CommentComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,

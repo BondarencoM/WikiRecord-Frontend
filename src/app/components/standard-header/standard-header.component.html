@@ -11,12 +11,6 @@
     </form>
 
     <div class="col-auto btn-group">
-        <!-- <div routerLink="/personas/add" class="btn btn-primary">
-            Add Persona
-        </div>
-        <div routerLink="/interests/add" class="btn btn-primary">
-            Add Interest
-        </div> -->
         <button routerLink="/recommendations/add" class="btn btn-primary">
             Add Recommendation
         </button>
@@ -31,6 +25,7 @@
                     {{user.claims.preferred_username}}
                 </span>
                 <div ngbDropdownMenu aria-labelledby="userAccountDropdown">
+                    <button class="dropdown-item" [routerLink]="'/u/' + user.claims.preferred_username" > View Profile </button>
                     <button class="dropdown-item" (click)="logoutButtonClicked()"> Log out</button>
                 </div>
             </div>

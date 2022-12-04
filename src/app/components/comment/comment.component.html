@@ -23,9 +23,21 @@
         </div>
     
         <div class="mt-auto comment-footer">
-            <span class="username font-weight-bold">{{comment.username || 'Annonymous'}} </span>
-            <span class="text-muted">{{comment.createdAt | date:'short'}} </span>
+            <span class="btn username font-weight-bold" [routerLink]="'/u/' + comment.username" >
+                {{comment.username || 'Annonymous'}}
+            </span>
+            <span class="text-muted">
+                {{comment.createdAt | date:'short'}}
+            </span>
             <button class="btn font-weight-bold py-0" [disabled]="disabled" >Reply</button>
+            <button 
+                *ngIf="showViewButton"
+                class="btn text-secondary font-weight-bold py-0" 
+                [disabled]="disabled"
+                [routerLink]="getUrl(comment)">
+                View
+            </button>
+
             <button 
                 *ngIf="canEdit()"
                 class="btn text-danger font-weight-bold py-0" 

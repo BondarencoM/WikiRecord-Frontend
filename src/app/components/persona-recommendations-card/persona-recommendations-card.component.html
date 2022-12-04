@@ -12,7 +12,7 @@
         *ngFor="let recommendation of persona.shortRecommendationsList"
         [interest]="recommendation.interest"
         class="card-text cursor-pointer" 
-        routerLink="recommendations/{{recommendation.id}}"
+        routerLink="/recommendations/{{recommendation.id}}"
         > 
         </app-interest-short-entry>
     </div>

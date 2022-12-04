@@ -11,6 +11,7 @@ import { AddInterestPageComponent } from './pages/interests/add-interest-page/ad
 import { AddRecommendationPageComponent } from './pages/recommendations/add-recommendation-page/add-recommendation-page.component';
 import { AuthGuardService } from './auth/guards/auth-guard.service';
 import { ViewPersonaPageComponent } from './components/view-persona-page/view-persona-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component'
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'personas/add', component: AddPersonaPageComponent, canActivate: [AuthGuardService]},
   {path: 'personas/:id', component: ViewPersonaPageComponent},
   {path: 'interests/add', component: AddInterestPageComponent, canActivate: [AuthGuardService]},
+  {path: 'u/:username', component: ProfilePageComponent},
   {path: '**', component: HomePageComponent},
 ]
 

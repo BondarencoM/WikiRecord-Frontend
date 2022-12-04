@@ -18,7 +18,7 @@ export class AuthService {
     post_logout_redirect_uri: BASE_URL + 'auth-signout-callback',
     response_type: 'code',
     automaticSilentRenew: true,
-    scope: 'openid profile recommendation-service user-profile-service comment-service',
+    scope: 'openid profile recommendation-service profile-service comment-service',
     filterProtocolClaims: true,
     loadUserInfo: true,
     silent_redirect_uri: BASE_URL + 'auth-silent-callback',
@@ -50,7 +50,7 @@ export class AuthService {
 
   startRegistrationRedirect(): void {
     this.saveRestorePath()
-    const callback = encodeURIComponent(window.location.origin + '/registration-callback')
+    const callback = encodeURIComponent(BASE_URL + '/registration-callback')
     window.location.href = environment.authenticationAuthority + '/Account/Register?returnUrl=' + callback
   }
 
@@ -80,7 +80,7 @@ export class AuthService {
 
   }
 
-  private saveRestorePath = (returnUrl: string = null) => localStorage.setItem('restore-url', returnUrl || window.location.pathname)
+  private saveRestorePath = (returnUrl: string = null) => localStorage.setItem('restore-url', returnUrl || this.router.url)
 
   private restorePath = () => {
     this.router.navigateByUrl(localStorage.getItem('restore-url') || '/')

@@ -42,6 +42,9 @@
 
     <!-- Buttons -->
     <div class="d-flex justify-content-start button-pane mt-3">
+        
+        <a [routerLink]="'/u/' + recommendation.addedBy" >Added by {{recommendation.addedBy}}</a>
+
         <a href="{{recommendation.context}}" target="_blank"> {{ recommendation.isConfirmed ? 'Context' : 'Proof' }} </a>
 
         <strong [ngClass]="{'text-success': recommendation.isConfirmed, 'text-danger':!recommendation.isConfirmed}"> 

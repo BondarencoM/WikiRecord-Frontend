@@ -1,0 +1,11 @@
+<h1>{{user && user.id}}</h1>
+
+<h2>Recent comments:</h2>
+<div *ngIf="user && user.comments" class="d-flex flex-column">
+    <div *ngFor="let comment  of user.comments">
+        <app-comment 
+            [comment]="comment"
+            [showViewButton]="true"
+        > </app-comment>
+    </div>
+</div>  

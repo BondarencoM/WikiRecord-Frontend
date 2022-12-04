@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --hmr true --configuration development",
+    "build": "ng build --configuration production",
     "test": "ng test",
     "test:ci": "ng test --browsers=ChromeHeadless --watch=false --code-coverage --source-map=false",
     "lint": "ng lint",
