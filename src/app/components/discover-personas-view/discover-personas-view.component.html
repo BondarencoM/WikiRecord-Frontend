@@ -1,4 +1,16 @@
-<div *ngIf="personas.length" class="card-deck d-flex justify-content-center">
+<div *ngIf="errorMessage" class="alert alert-danger">
+    {{errorMessage}}
+</div>
+
+<app-loading-indicator *ngIf="!personas">
+</app-loading-indicator>
+
+<div *ngIf="personas" class="card-deck d-flex justify-content-center">
+    
+    <div *ngIf="!personas.length">
+        Could not find any recomendations.
+    </div>
+
     <app-persona-recommendations-card 
         *ngFor="let persona of personas" 
         [persona]="persona"
@@ -7,5 +19,3 @@
     </app-persona-recommendations-card>
 </div>
 
-<app-loading-indicator *ngIf="!personas.length">
-</app-loading-indicator>

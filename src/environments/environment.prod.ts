@@ -10,7 +10,9 @@ export const environment = {
 
 
   hostsRequiringAccessToken: [
-    'https://commendie.azurewebsites.net',
+    'https://wikirecord.azurewebsites.net',
+    'https://comment-service.azurewebsites.net',
+    'https://wikirecord-profile-service.azurewebsites.net',
     'https://recommendation-service.azurewebsites.net',
   ]
 };

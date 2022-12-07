@@ -18,7 +18,7 @@ export class CommentListComponent implements OnInit {
 
   @Input() entityId: string
 
-  comments: Comment[] = []
+  comments: Comment[] | null = null
   moreAvailable = true
 
   constructor (private commentService: CommentService) { }
@@ -27,22 +27,14 @@ export class CommentListComponent implements OnInit {
     return environment[this.domain + 'ServiceURL']
   }
 
-  ngOnInit(): void {
-    this.commentService.getPage(this.commentUrl, this.entityId, COMMENT_BATCH).subscribe({
-      next: c => {
-        this.comments = c
-        this.moreAvailable = c.length >= COMMENT_BATCH
-      }
-    })
+  async ngOnInit(): Promise<void> {
+    this.comments = await this.commentService.getPage(this.commentUrl, this.entityId, COMMENT_BATCH).toPromise()
+    this.moreAvailable = this.comments.length >= COMMENT_BATCH
   }
 
-  onShowMore(): void {
-    this.commentService.getPage(this.commentUrl, this.entityId, COMMENT_BATCH, this.comments?.length || 0).subscribe({
-      next: c => {
-        this.comments.push(...c)
-        this.moreAvailable = c.length >= COMMENT_BATCH
-      }
-    })
+  async onShowMore(): Promise<void> {
+    const comments = await this.commentService.getPage(this.commentUrl, this.entityId, COMMENT_BATCH, this.comments?.length || 0).toPromise()
+        this.comments.push(...comments)
+        this.moreAvailable = comments.length >= COMMENT_BATCH
   }
-
 }
