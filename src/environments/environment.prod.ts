@@ -4,7 +4,7 @@ export const environment = {
   recommendationServiceURL: 'https://recommendation-service.azurewebsites.net/api/recommendations',
   interestServiceURL: 'https://recommendation-service.azurewebsites.net/api/interests',
   commentServiceURL: 'https://comment-service.azurewebsites.net/api/comments',
-  authenticationAuthority: 'https://commendie.azurewebsites.net',
+  authenticationAuthority: 'https://wikirecord.azurewebsites.net',
   baseHref: '/WikiRecord-Frontend/',
 
 
