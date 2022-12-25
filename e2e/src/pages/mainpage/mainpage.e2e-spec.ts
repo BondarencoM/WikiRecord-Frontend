@@ -28,7 +28,8 @@ describe('Main page', () => {
 
     // Persona
     expect(browser.driver.getCurrentUrl()).toContain('/personas')
-    expect(element(by.tagName('body')).getText()).toContain(name)
+    let actual = await element(by.tagName('body')).getText()
+    expect(actual).toContain(name)
   })
 
 })

@@ -31,6 +31,10 @@ export class RegisterPage extends BasePage {
         return browser.driver.findElement(by.name('Input.ConfirmPassword'))
     }
 
+    get consentCheckBox(): WebElementPromise {
+        return browser.driver.findElement(by.name('Input.Consent'))
+    }
+
     get loginButton(): WebElementPromise {
         return browser.driver.findElement(by.css('.col-md-4 button.btn-primary'))
     }

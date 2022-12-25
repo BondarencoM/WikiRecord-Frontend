@@ -19,7 +19,7 @@ describe('A journey to add a recommendation', () => {
     await mainpage.expectNoBrowserErrors()
   })
 
-  it('support adding a persona, interest and then persona', async () => {
+  it('support adding a persona, interest and then recommendation', async () => {
     await mainpage.navigateTo()
     await mainpage.addRecommendationButton.click()
 

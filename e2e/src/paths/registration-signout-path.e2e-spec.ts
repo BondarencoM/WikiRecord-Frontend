@@ -35,6 +35,7 @@ describe('A journey to create and account, access the system and log out', () =>
         await registerPage.emailField.sendKeys(sampleEmail)
         await registerPage.passwordField.sendKeys(samplePassword)
         await registerPage.confirmPasswordField.sendKeys(samplePassword)
+        await registerPage.consentCheckBox.click()
 
         await registerPage.loginButton.click()
 
