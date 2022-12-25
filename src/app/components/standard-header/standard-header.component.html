@@ -25,7 +25,8 @@
                     {{user.claims.preferred_username}}
                 </span>
                 <div ngbDropdownMenu aria-labelledby="userAccountDropdown">
-                    <button class="dropdown-item" [routerLink]="'/u/' + user.claims.preferred_username" > View Profile </button>
+                    <button class="dropdown-item" [routerLink]="'/u/' + user.claims.preferred_username" > Public Profile </button>
+                    <a class="dropdown-item" target="_blank" [href]="AuthenticationService + '/Account/Manage'"  > Account Settings </a>
                     <button class="dropdown-item" (click)="logoutButtonClicked()"> Log out</button>
                 </div>
             </div>

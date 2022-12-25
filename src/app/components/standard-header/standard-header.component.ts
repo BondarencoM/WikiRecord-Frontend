@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AuthenticatedUser } from 'src/app/models/AuthenticatedUser'
 import { AuthService } from 'src/app/services/auth.service'
 import { PersonasService } from 'src/app/services/personas.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-standard-header',
@@ -19,6 +20,9 @@ export class StandardHeaderComponent implements OnInit {
     private personas: PersonasService,
   ) { }
 
+  get AuthenticationService(): string {
+     return environment.authenticationAuthority
+  }
   ngOnInit(): void {
     this.authService.getAuthenticatedeUser().then(user => this.user = user)
     this.authService.UserChanged.subscribe(user => this.user = user)
